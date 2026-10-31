@@ -121,3 +121,13 @@ npm test
 # Launch local preview server (port 8182)
 npm run preview
 ```
+
+---
+
+## 6. Licensing, Attribution & Trademarks
+
+- **LEGO®** is a registered trademark of the LEGO Group of companies, which does not sponsor, authorize, or endorse this site or project.
+- **LDraw™** is a trademark owned and licensed by the Estate of James Jessiman.
+- **Parts Library Attribution**: Parts library data, configurations, and models are copyright © 2002–2026 **The LDraw Parts Library** (LDraw.org), redistributable under Creative Commons Attribution (**CC BY 4.0** / **CC BY 2.0**). See [CAreadme.txt](raw/CAreadme.txt) and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+- **Software License**: The catalog generation tooling, build pipeline, and dashboard interface are licensed under the **MIT License**.
+

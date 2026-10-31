@@ -87,7 +87,7 @@ function deployPrebuiltArtifacts(distDir) {
     console.log('[build-all] Copied CNAME to dist/')
   }
 
-  // 5. Raw Fallback Assets (LDConfig.ldr)
+  // 5. Raw Fallback Assets (LDConfig.ldr & CAreadme.txt)
   console.log('\n[5/5] Deploying Raw Fallback Configs...')
   const localLdConfig = path.join(REPO_ROOT, 'raw', 'LDConfig.ldr')
   if (fs.existsSync(localLdConfig)) {
@@ -95,6 +95,13 @@ function deployPrebuiltArtifacts(distDir) {
     fs.mkdirSync(distRaw, { recursive: true })
     fs.copyFileSync(localLdConfig, path.join(distRaw, 'LDConfig.ldr'))
     console.log('[build-all] Copied LDConfig.ldr to dist/raw/')
+  }
+  const localCAreadme = path.join(REPO_ROOT, 'raw', 'CAreadme.txt')
+  if (fs.existsSync(localCAreadme)) {
+    const distRaw = path.join(distDir, 'raw')
+    fs.mkdirSync(distRaw, { recursive: true })
+    fs.copyFileSync(localCAreadme, path.join(distRaw, 'CAreadme.txt'))
+    console.log('[build-all] Copied CAreadme.txt to dist/raw/')
   }
 
   console.log('\n========================================================')
@@ -165,7 +172,7 @@ async function main() {
     console.log('[build-all] Copied CNAME to dist/')
   }
 
-  // 5. Raw Fallback Assets (LDConfig.ldr)
+  // 5. Raw Fallback Assets (LDConfig.ldr & CAreadme.txt)
   console.log('\n[5/5] Deploying Raw Fallback Configs...')
   const distRaw = path.join(distDir, 'raw')
   fs.mkdirSync(distRaw, { recursive: true })
@@ -173,6 +180,14 @@ async function main() {
   if (fs.existsSync(ldConfigPath)) {
     fs.copyFileSync(ldConfigPath, path.join(distRaw, 'LDConfig.ldr'))
     console.log('[build-all] Copied LDConfig.ldr to dist/raw/')
+  }
+  const caReadmePath = path.join(sourceDir, 'CAreadme.txt')
+  if (fs.existsSync(caReadmePath)) {
+    fs.copyFileSync(caReadmePath, path.join(distRaw, 'CAreadme.txt'))
+    console.log('[build-all] Copied CAreadme.txt to dist/raw/')
+  } else if (fs.existsSync(path.join(REPO_ROOT, 'raw', 'CAreadme.txt'))) {
+    fs.copyFileSync(path.join(REPO_ROOT, 'raw', 'CAreadme.txt'), path.join(distRaw, 'CAreadme.txt'))
+    console.log('[build-all] Copied CAreadme.txt to dist/raw/')
   }
 
   console.log('\n========================================================')
