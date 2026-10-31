@@ -1,0 +1,52 @@
+name: Weekly LDraw Upstream Sync & Rebuild
+
+on:
+  schedule:
+    # Runs at 03:00 UTC every Sunday
+    - cron: '0 3 * * 0'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Sync LDraw Upstream
+        run: |
+          node scripts/sync-ldraw.mjs
+
+      - name: Rebuild Manifest, Indices & Bundles
+        run: |
+          npm run build
+          npm test
+
+      - name: Check for Changes
+        id: git-diff
+        run: |
+          git status --porcelain
+          if [[ -n $(git status --porcelain) ]]; then
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit or Open PR
+        if: steps.git-diff.outputs.has_changes == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b chore/ldraw-weekly-sync-${{ github.run_id }}
+          git add manifests/ indices/ bundles/
+          git commit -m "chore(catalog): weekly upstream LDraw parts sync and bundle rebuild"
+          git push origin chore/ldraw-weekly-sync-${{ github.run_id }}

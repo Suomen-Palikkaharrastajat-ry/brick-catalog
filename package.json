@@ -1,0 +1,25 @@
+{
+  "name": "brick-play-catalog",
+  "version": "1.0.0",
+  "description": "Standalone CDN-optimized LDraw parts catalog and MPD bundle repository for Brick Frame",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build-all.mjs",
+    "build:manifest": "node scripts/build-manifest.mjs",
+    "build:indices": "node scripts/build-indices.mjs",
+    "build:bundles": "node scripts/build-bundles.mjs",
+    "sync": "node scripts/sync-ldraw.mjs",
+    "test": "node scripts/test-catalog.mjs",
+    "preview": "node scripts/preview.mjs"
+  },
+  "keywords": [
+    "ldraw",
+    "lego",
+    "catalog",
+    "mpd",
+    "brick-frame",
+    "cad"
+  ],
+  "author": "Palikkaharrastajat",
+  "license": "CC-BY-4.0"
+}

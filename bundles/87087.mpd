@@ -1,0 +1,305 @@
+0 FILE 87087.dat
+0 Brick  1 x  1 with Stud on 1 Side
+0 Name: 87087.dat
+0 Author: Magnus Forsberg [MagFors]
+0 !LDRAW_ORG Part UPDATE 2024-06
+0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
+
+0 BFC CERTIFY CCW
+
+0 !HISTORY 2009-12-29 [PTadmin] Official Update 2009-03
+0 !HISTORY 2024-05-27 [MagFors] Made CCW, complete rework, original by lostcarpark
+0 !HISTORY 2024-07-29 [OrionP] Official Update 2024-06
+
+4 16 -6 24 -6 6 24 -6 10 24 -10 -10 24 -10
+4 16 10 24 -10 6 24 -6 6 24 6 10 24 10
+4 16 6 24 6 -6 24 6 -10 24 10 10 24 10
+4 16 -10 24 10 -6 24 6 -6 24 -6 -10 24 -10
+0 BFC INVERTNEXT
+1 16 0 24 0 -6 0 0 0 -20 0 0 0 6 box4t.dat
+1 16 0 24 0 -10 0 0 0 -24 0 0 0 10 box4t.dat
+
+1 16 0 10 -6 -4 0 0 0 0 4 0 -1 0 4-4ndis.dat
+1 16 0 10 -6 -4 0 0 0 0 4 0 -1 0 4-4edge.dat
+4 16 -6 24 -6 -4 14 -6 4 14 -6 6 24 -6
+4 16 6 24 -6 4 14 -6 4 6 -6 6 4 -6
+4 16 6 4 -6 4 6 -6 -4 6 -6 -6 4 -6
+4 16 -6 4 -6 -4 6 -6 -4 14 -6 -6 24 -6
+
+0 BFC INVERTNEXT
+1 16 0 10 -10 4 0 0 0 0 4 0 4 0 4-4cyli.dat
+
+1 16 0 10 -10 6 0 0 0 0 6 0 1 0 4-4ndis.dat
+1 16 0 10 -10 6 0 0 0 0 6 0 1 0 4-4edge.dat
+4 16 -10 24 -10 10 24 -10 6 16 -10 -6 16 -10
+4 16 -10 0 -10 -10 24 -10 -6 16 -10 -6 4 -10
+4 16 10 0 -10 -10 0 -10 -6 4 -10 6 4 -10
+4 16 10 24 -10 10 0 -10 6 4 -10 6 16 -10
+
+1 16 0 10 -10 1 0 0 0 0 1 0 1 0 stud2a.dat
+1 16 0 0 0 0 0 1 0 1 0 -1 0 0 stud.dat
+0 FILE box4t.dat
+0 Box with 4 Adjacent Faces and All Edges
+0 Name: box4t.dat
+0 Author: Tore Eriksson [Tore_Eriksson]
+0 !LDRAW_ORG Primitive UPDATE 2003-02
+0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
+
+0 BFC CERTIFY CCW
+
+0 !HISTORY 1997-09-29 [PTadmin] Official Update 1997-15
+0 !HISTORY 2002-08-31 [izanette] Modified with WINDZ for BFC compliance
+0 !HISTORY 2003-08-01 [PTadmin] Official Update 2003-02
+0 !HISTORY 2007-06-24 [PTadmin] Header formatted for Contributor Agreement
+0 !HISTORY 2008-07-01 [PTadmin] Official Update 2008-01
+
+
+2 24 1 1 1 -1 1 1
+2 24 -1 1 1 -1 1 -1
+2 24 -1 1 -1 1 1 -1
+2 24 1 1 -1 1 1 1
+2 24 1 0 1 -1 0 1
+2 24 -1 0 1 -1 0 -1
+2 24 -1 0 -1 1 0 -1
+2 24 1 0 -1 1 0 1
+2 24 1 0 1 1 1 1
+2 24 -1 0 1 -1 1 1
+2 24 1 0 -1 1 1 -1
+2 24 -1 0 -1 -1 1 -1
+4 16 1 1 1 1 1 -1 -1 1 -1 -1 1 1
+4 16 1 1 1 -1 1 1 -1 0 1 1 0 1
+4 16 -1 1 1 -1 1 -1 -1 0 -1 -1 0 1
+0 // 4 16 -1 1 -1 -1 0 -1 1 0 -1 1 1 -1
+4 16 1 1 -1 1 1 1 1 0 1 1 0 -1
+0
+0 FILE 4-4ndis.dat
+0 Disc Negative 1.0
+0 Name: 4-4ndis.dat
+0 Author: James Jessiman
+0 !LDRAW_ORG Primitive UPDATE 2012-01
+0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
+
+0 BFC CERTIFY CCW
+
+0 !HISTORY 2002-03-23 [sbliss] Added BFC statement; compacted code
+0 !HISTORY 2002-04-25 [PTadmin] Official Update 2002-02
+0 !HISTORY 2007-06-24 [PTadmin] Header formatted for Contributor Agreement
+0 !HISTORY 2008-07-01 [PTadmin] Official Update 2008-01
+0 !HISTORY 2012-02-16 [Philo] Changed to CCW
+0 !HISTORY 2012-03-30 [PTadmin] Official Update 2012-01
+
+
+3 16 0.9239 0 0.3827 1 0 0 1 0 1
+3 16 0.7071 0 0.7071 0.9239 0 0.3827 1 0 1
+3 16 0.3827 0 0.9239 0.7071 0 0.7071 1 0 1
+3 16 0 0 1 0.3827 0 0.9239 1 0 1
+3 16 -0.3827 0 0.9239 0 0 1 -1 0 1
+3 16 -0.7071 0 0.7071 -0.3827 0 0.9239 -1 0 1
+3 16 -0.9239 0 0.3827 -0.7071 0 0.7071 -1 0 1
+3 16 -1 0 0 -0.9239 0 0.3827 -1 0 1
+3 16 -0.9239 0 -0.3827 -1 0 0 -1 0 -1
+3 16 -0.7071 0 -0.7071 -0.9239 0 -0.3827 -1 0 -1
+3 16 -0.3827 0 -0.9239 -0.7071 0 -0.7071 -1 0 -1
+3 16 0 0 -1 -0.3827 0 -0.9239 -1 0 -1
+3 16 0.3827 0 -0.9239 0 0 -1 1 0 -1
+3 16 0.7071 0 -0.7071 0.3827 0 -0.9239 1 0 -1
+3 16 0.9239 0 -0.3827 0.7071 0 -0.7071 1 0 -1
+3 16 1 0 0 0.9239 0 -0.3827 1 0 -1
+0 FILE 4-4edge.dat
+0 Circle 1.0
+0 Name: 4-4edge.dat
+0 Author: James Jessiman
+0 !LDRAW_ORG Primitive UPDATE 2017-01
+0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
+
+0 BFC CERTIFY CCW
+
+0 !HISTORY 1998-12-15 [PTadmin] Official Update 1998-10
+0 !HISTORY 2005-12-28 [PTadmin] Official Update 2005-01
+0 !HISTORY 2007-06-24 [PTadmin] Header formatted for Contributor Agreement
+0 !HISTORY 2008-07-01 [PTadmin] Official Update 2008-01
+0 !HISTORY 2017-01-15 [Steffen] BFCed
+0 !HISTORY 2017-12-30 [PTadmin] Official Update 2017-01
+
+
+2 24 1 0 0 0.9239 0 0.3827
+2 24 0.9239 0 0.3827 0.7071 0 0.7071
+2 24 0.7071 0 0.7071 0.3827 0 0.9239
+2 24 0.3827 0 0.9239 0 0 1
+2 24 0 0 1 -0.3827 0 0.9239
+2 24 -0.3827 0 0.9239 -0.7071 0 0.7071
+2 24 -0.7071 0 0.7071 -0.9239 0 0.3827
+2 24 -0.9239 0 0.3827 -1 0 -0
+2 24 -1 0 -0 -0.9239 0 -0.3827
+2 24 -0.9239 0 -0.3827 -0.7071 0 -0.7071
+2 24 -0.7071 0 -0.7071 -0.3827 0 -0.9239
+2 24 -0.3827 0 -0.9239 0 0 -1
+2 24 0 0 -1 0.3827 0 -0.9239
+2 24 0.3827 0 -0.9239 0.7071 0 -0.7071
+2 24 0.7071 0 -0.7071 0.9239 0 -0.3827
+2 24 0.9239 0 -0.3827 1 0 0
+0 FILE 4-4cyli.dat
+0 Cylinder 1.0
+0 Name: 4-4cyli.dat
+0 Author: James Jessiman
+0 !LDRAW_ORG Primitive UPDATE 2005-01
+0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
+
+0 BFC CERTIFY CCW
+
+0 !HISTORY 1998-12-15 [PTadmin] Official Update 1998-10
+0 !HISTORY 2002-03-23 [sbliss] Added BFC statement; merged headers from files in distributions LDraw 0.27 and Complete.
+0 !HISTORY 2002-04-25 [PTadmin] Official Update 2002-02
+0 !HISTORY 2004-12-14 [guyvivan] BFC CCW
+0 !HISTORY 2005-12-28 [PTadmin] Official Update 2005-01
+0 !HISTORY 2007-06-24 [PTadmin] Header formatted for Contributor Agreement
+0 !HISTORY 2008-07-01 [PTadmin] Official Update 2008-01
+
+
+4 16 1 1 0 0.9239 1 0.3827 0.9239 0 0.3827 1 0 0
+5 24 1 0 0 1 1 0 0.9239 0 0.3827 0.9239 0 -0.3827
+4 16 0.9239 1 0.3827 0.7071 1 0.7071 0.7071 0 0.7071 0.9239 0 0.3827
+5 24 0.9239 0 0.3827 0.9239 1 0.3827 0.7071 0 0.7071 1 0 0
+4 16 0.7071 1 0.7071 0.3827 1 0.9239 0.3827 0 0.9239 0.7071 0 0.7071
+5 24 0.7071 0 0.7071 0.7071 1 0.7071 0.3827 0 0.9239 0.9239 0 0.3827
+4 16 0.3827 1 0.9239 0 1 1 0 0 1 0.3827 0 0.9239
+5 24 0.3827 0 0.9239 0.3827 1 0.9239 0 0 1 0.7071 0 0.7071
+4 16 0 1 1 -0.3827 1 0.9239 -0.3827 0 0.9239 0 0 1
+5 24 0 0 1 0 1 1 -0.3827 0 0.9239 0.3827 0 0.9239
+4 16 -0.3827 1 0.9239 -0.7071 1 0.7071 -0.7071 0 0.7071 -0.3827 0 0.9239
+5 24 -0.3827 0 0.9239 -0.3827 1 0.9239 -0.7071 0 0.7071 0 0 1
+4 16 -0.7071 1 0.7071 -0.9239 1 0.3827 -0.9239 0 0.3827 -0.7071 0 0.7071
+5 24 -0.7071 0 0.7071 -0.7071 1 0.7071 -0.9239 0 0.3827 -0.3827 0 0.9239
+4 16 -0.9239 1 0.3827 -1 1 0 -1 0 0 -0.9239 0 0.3827
+5 24 -0.9239 0 0.3827 -0.9239 1 0.3827 -1 0 0 -0.7071 0 0.7071
+4 16 -1 1 0 -0.9239 1 -0.3827 -0.9239 0 -0.3827 -1 0 0
+5 24 -1 0 0 -1 1 0 -0.9239 0 -0.3827 -0.9239 0 0.3827
+4 16 -0.9239 1 -0.3827 -0.7071 1 -0.7071 -0.7071 0 -0.7071 -0.9239 0 -0.3827
+5 24 -0.9239 0 -0.3827 -0.9239 1 -0.3827 -0.7071 0 -0.7071 -1 0 0
+4 16 -0.7071 1 -0.7071 -0.3827 1 -0.9239 -0.3827 0 -0.9239 -0.7071 0 -0.7071
+5 24 -0.7071 0 -0.7071 -0.7071 1 -0.7071 -0.3827 0 -0.9239 -0.9239 0 -0.3827
+4 16 -0.3827 1 -0.9239 0 1 -1 0 0 -1 -0.3827 0 -0.9239
+5 24 -0.3827 0 -0.9239 -0.3827 1 -0.9239 0 0 -1 -0.7071 0 -0.7071
+4 16 0 1 -1 0.3827 1 -0.9239 0.3827 0 -0.9239 0 0 -1
+5 24 0 0 -1 0 1 -1 0.3827 0 -0.9239 -0.3827 0 -0.9239
+4 16 0.3827 1 -0.9239 0.7071 1 -0.7071 0.7071 0 -0.7071 0.3827 0 -0.9239
+5 24 0.3827 0 -0.9239 0.3827 1 -0.9239 0.7071 0 -0.7071 0 0 -1
+4 16 0.7071 1 -0.7071 0.9239 1 -0.3827 0.9239 0 -0.3827 0.7071 0 -0.7071
+5 24 0.7071 0 -0.7071 0.7071 1 -0.7071 0.9239 0 -0.3827 0.3827 0 -0.9239
+4 16 0.9239 1 -0.3827 1 1 0 1 0 0 0.9239 0 -0.3827
+5 24 0.9239 0 -0.3827 0.9239 1 -0.3827 1 0 0 0.7071 0 -0.7071
+0
+0 FILE stud2a.dat
+0 Stud Open without Base Edges
+0 Name: stud2a.dat
+0 Author: James Jessiman
+0 !LDRAW_ORG Primitive UPDATE 2009-02
+0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
+
+0 BFC CERTIFY CCW
+
+0 !HISTORY 1999-07-05 [PTadmin] Official Update 1999-05
+0 !HISTORY 2002-04-04 [sbliss] Modified for BFC compliance
+0 !HISTORY 2002-04-25 [PTadmin] Official Update 2002-02
+0 !HISTORY 2007-06-24 [PTadmin] Header formatted for Contributor Agreement
+0 !HISTORY 2008-07-01 [PTadmin] Official Update 2008-01
+0 !HISTORY 2009-06-21 [cwdee] Update ring references to 4-4ring
+0 !HISTORY 2009-09-03 [PTadmin] Official Update 2009-02
+
+
+1 16 0 -4 0 4 0 0 0 1 0 0 0 4 4-4edge.dat
+1 16 0 -4 0 6 0 0 0 1 0 0 0 6 4-4edge.dat
+0 BFC INVERTNEXT
+1 16 0 -4 0 4 0 0 0 4 0 0 0 4 4-4cyli.dat
+1 16 0 -4 0 6 0 0 0 4 0 0 0 6 4-4cyli.dat
+1 16 0 -4 0 2 0 0 0 1 0 0 0 2 4-4ring2.dat
+0
+0 FILE 4-4ring2.dat
+0 Ring  2 x 1.0
+0 Name: 4-4ring2.dat
+0 Author: James Jessiman
+0 !LDRAW_ORG Primitive UPDATE 2009-01
+0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
+
+0 BFC CERTIFY CCW
+
+0 !HISTORY 1998-12-15 [PTadmin] Official Update 1998-10
+0 !HISTORY 2002-04-05 [hafhead] Added BFC statement
+0 !HISTORY 2002-04-25 [PTadmin] Official Update 2002-02
+0 !HISTORY 2007-06-24 [PTadmin] Header formatted for Contributor Agreement
+0 !HISTORY 2008-07-01 [PTadmin] Official Update 2008-01
+0 !HISTORY 2008-08-26 [cwdee] Switch polygon winding and rename
+0 !HISTORY 2009-05-02 [PTadmin] Official Update 2009-01
+
+
+4 16 -1.1481 0 2.7717 -0.7654 0 1.8478 0 0 2 0 0 3
+4 16 -2.1213 0 2.1213 -1.4142 0 1.4142 -0.7654 0 1.8478 -1.1481 0 2.7717
+4 16 -2.7717 0 1.1481 -1.8478 0 0.7654 -1.4142 0 1.4142 -2.1213 0 2.1213
+4 16 -3 0 0 -2 0 0 -1.8478 0 0.7654 -2.7717 0 1.1481
+4 16 -2.7717 0 -1.1481 -1.8478 0 -0.7654 -2 0 0 -3 0 0
+4 16 -2.1213 0 -2.1213 -1.4142 0 -1.4142 -1.8478 0 -0.7654 -2.7717 0 -1.1481
+4 16 -1.1481 0 -2.7717 -0.7654 0 -1.8478 -1.4142 0 -1.4142 -2.1213 0 -2.1213
+4 16 0 0 -3 0 0 -2 -0.7654 0 -1.8478 -1.1481 0 -2.7717
+4 16 1.1481 0 -2.7717 0.7654 0 -1.8478 0 0 -2 0 0 -3
+4 16 2.1213 0 -2.1213 1.4142 0 -1.4142 0.7654 0 -1.8478 1.1481 0 -2.7717
+4 16 2.7717 0 -1.1481 1.8478 0 -0.7654 1.4142 0 -1.4142 2.1213 0 -2.1213
+4 16 3 0 0 2 0 0 1.8478 0 -0.7654 2.7717 0 -1.1481
+4 16 2.7717 0 1.1481 1.8478 0 0.7654 2 0 0 3 0 0
+4 16 2.1213 0 2.1213 1.4142 0 1.4142 1.8478 0 0.7654 2.7717 0 1.1481
+4 16 1.1481 0 2.7717 0.7654 0 1.8478 1.4142 0 1.4142 2.1213 0 2.1213
+4 16 0 0 3 0 0 2 0.7654 0 1.8478 1.1481 0 2.7717
+0
+0 FILE stud.dat
+0 Stud
+0 Name: stud.dat
+0 Author: James Jessiman
+0 !LDRAW_ORG Primitive UPDATE 2012-01
+0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
+
+0 BFC CERTIFY CCW
+
+0 !HISTORY 2002-04-04 [sbliss] Modified for BFC compliance
+0 !HISTORY 2002-04-25 [PTadmin] Official Update 2002-02
+0 !HISTORY 2007-06-24 [PTadmin] Header formatted for Contributor Agreement
+0 !HISTORY 2008-07-01 [PTadmin] Official Update 2008-01
+0 !HISTORY 2012-02-16 [Philo] Changed to CCW
+0 !HISTORY 2012-03-30 [PTadmin] Official Update 2012-01
+
+
+1 16 0 0 0 6 0 0 0 1 0 0 0 6 4-4edge.dat
+1 16 0 -4 0 6 0 0 0 1 0 0 0 6 4-4edge.dat
+1 16 0 0 0 6 0 0 0 -4 0 0 0 6 4-4cyli.dat
+1 16 0 -4 0 6 0 0 0 1 0 0 0 6 4-4disc.dat
+0 FILE 4-4disc.dat
+0 Disc 1.0
+0 Name: 4-4disc.dat
+0 Author: James Jessiman
+0 !LDRAW_ORG Primitive UPDATE 2002-02
+0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
+
+0 BFC CERTIFY CCW
+
+0 !HISTORY 1998-12-15 [PTadmin] Official Update 1998-10
+0 !HISTORY 2002-03-23 [sbliss] Added BFC statement
+0 !HISTORY 2002-04-25 [PTadmin] Official Update 2002-02
+0 !HISTORY 2007-06-24 [PTadmin] Header formatted for Contributor Agreement
+0 !HISTORY 2008-07-01 [PTadmin] Official Update 2008-01
+
+
+3 16 0 0 0 1 0 0 0.9239 0 0.3827
+3 16 0 0 0 0.9239 0 0.3827 0.7071 0 0.7071
+3 16 0 0 0 0.7071 0 0.7071 0.3827 0 0.9239
+3 16 0 0 0 0.3827 0 0.9239 0 0 1
+3 16 0 0 0 0 0 1 -0.3827 0 0.9239
+3 16 0 0 0 -0.3827 0 0.9239 -0.7071 0 0.7071
+3 16 0 0 0 -0.7071 0 0.7071 -0.9239 0 0.3827
+3 16 0 0 0 -0.9239 0 0.3827 -1 0 -0
+3 16 0 0 0 -1 0 -0 -0.9239 0 -0.3827
+3 16 0 0 0 -0.9239 0 -0.3827 -0.7071 0 -0.7071
+3 16 0 0 0 -0.7071 0 -0.7071 -0.3827 0 -0.9239
+3 16 0 0 0 -0.3827 0 -0.9239 0 0 -1
+3 16 0 0 0 0 0 -1 0.3827 0 -0.9239
+3 16 0 0 0 0.3827 0 -0.9239 0.7071 0 -0.7071
+3 16 0 0 0 0.7071 0 -0.7071 0.9239 0 -0.3827
+3 16 0 0 0 0.9239 0 -0.3827 1 0 0
+0
