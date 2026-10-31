@@ -152,6 +152,24 @@ export function buildIndices(sourceDir, destDir) {
     console.log(`[build-indices] Wrote category ${catName}.json (${partsList.length} parts)`)
   }
 
+  // 4. Build or Copy Elements Index
+  const elementsDataPath = path.join(REPO_ROOT, 'data', 'elements-index.json')
+  let elementsSourcePath = null
+  if (sourceDir && fs.existsSync(path.join(sourceDir, 'elements-index.json'))) {
+    elementsSourcePath = path.join(sourceDir, 'elements-index.json')
+  } else if (fs.existsSync(elementsDataPath)) {
+    elementsSourcePath = elementsDataPath
+  }
+
+  if (elementsSourcePath) {
+    const elementsContent = fs.readFileSync(elementsSourcePath, 'utf8')
+    const elementsDestPath = path.join(destDir, 'elements-index.json')
+    fs.writeFileSync(elementsDestPath, elementsContent, 'utf8')
+    console.log(`[build-indices] Wrote elements-index.json to ${elementsDestPath}`)
+  } else {
+    console.warn('[build-indices] Warning: elements-index.json not found in source or data/')
+  }
+
   console.log('[build-indices] All indices built successfully.')
   return {
     curatedCount: curatedPartsArray.length,

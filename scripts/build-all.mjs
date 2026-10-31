@@ -87,21 +87,29 @@ function deployPrebuiltArtifacts(distDir) {
     console.log('[build-all] Copied CNAME to dist/')
   }
 
-  // 5. Raw Fallback Assets (LDConfig.ldr & CAreadme.txt)
-  console.log('\n[5/5] Deploying Raw Fallback Configs...')
+  // 5. Raw Fallback Assets (LDConfig.ldr & CAreadme.txt & compatibility indices)
+  console.log('\n[5/5] Deploying Raw Fallback Configs & Compatibility Indices...')
+  const distRaw = path.join(distDir, 'raw')
+  fs.mkdirSync(distRaw, { recursive: true })
   const localLdConfig = path.join(REPO_ROOT, 'raw', 'LDConfig.ldr')
   if (fs.existsSync(localLdConfig)) {
-    const distRaw = path.join(distDir, 'raw')
-    fs.mkdirSync(distRaw, { recursive: true })
     fs.copyFileSync(localLdConfig, path.join(distRaw, 'LDConfig.ldr'))
     console.log('[build-all] Copied LDConfig.ldr to dist/raw/')
   }
   const localCAreadme = path.join(REPO_ROOT, 'raw', 'CAreadme.txt')
   if (fs.existsSync(localCAreadme)) {
-    const distRaw = path.join(distDir, 'raw')
-    fs.mkdirSync(distRaw, { recursive: true })
     fs.copyFileSync(localCAreadme, path.join(distRaw, 'CAreadme.txt'))
     console.log('[build-all] Copied CAreadme.txt to dist/raw/')
+  }
+
+  // Mirror elements-index.json, parts-index.json, and parts-curated.json into dist/raw/
+  const mirroredIndices = ['elements-index.json', 'parts-index.json', 'parts-curated.json']
+  for (const file of mirroredIndices) {
+    const srcFile = path.join(distIndices, file)
+    if (fs.existsSync(srcFile)) {
+      fs.copyFileSync(srcFile, path.join(distRaw, file))
+      console.log(`[build-all] Mirrored ${file} to dist/raw/`)
+    }
   }
 
   console.log('\n========================================================')
@@ -172,8 +180,8 @@ async function main() {
     console.log('[build-all] Copied CNAME to dist/')
   }
 
-  // 5. Raw Fallback Assets (LDConfig.ldr & CAreadme.txt)
-  console.log('\n[5/5] Deploying Raw Fallback Configs...')
+  // 5. Raw Fallback Assets (LDConfig.ldr, CAreadme.txt, and compatibility indices)
+  console.log('\n[5/5] Deploying Raw Fallback Configs & Compatibility Indices...')
   const distRaw = path.join(distDir, 'raw')
   fs.mkdirSync(distRaw, { recursive: true })
   const ldConfigPath = path.join(sourceDir, 'LDConfig.ldr')
@@ -188,6 +196,16 @@ async function main() {
   } else if (fs.existsSync(path.join(REPO_ROOT, 'raw', 'CAreadme.txt'))) {
     fs.copyFileSync(path.join(REPO_ROOT, 'raw', 'CAreadme.txt'), path.join(distRaw, 'CAreadme.txt'))
     console.log('[build-all] Copied CAreadme.txt to dist/raw/')
+  }
+
+  // Mirror elements-index.json, parts-index.json, and parts-curated.json into dist/raw/
+  const mirroredIndices = ['elements-index.json', 'parts-index.json', 'parts-curated.json']
+  for (const file of mirroredIndices) {
+    const srcFile = path.join(distIndices, file)
+    if (fs.existsSync(srcFile)) {
+      fs.copyFileSync(srcFile, path.join(distRaw, file))
+      console.log(`[build-all] Mirrored ${file} to dist/raw/`)
+    }
   }
 
   console.log('\n========================================================')

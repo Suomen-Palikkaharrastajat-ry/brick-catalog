@@ -153,6 +153,21 @@ async function runTests() {
     assert(partFiles.has('3024.dat'), 'Curated index includes 3024.dat (Plate 1x1)')
   }
 
+  const elementsIndexPath = path.join(targetDir, 'indices', 'elements-index.json')
+  assert(fs.existsSync(elementsIndexPath), 'elements-index.json exists in indices/')
+  if (fs.existsSync(elementsIndexPath)) {
+    const elData = JSON.parse(fs.readFileSync(elementsIndexPath, 'utf8'))
+    assert(elData.version === 1 && typeof elData.elements === 'object', 'elements-index.json has valid version and elements map')
+  }
+
+  // Backward compatibility mirror checks in raw/
+  const rawDir = path.join(targetDir, 'raw')
+  if (fs.existsSync(rawDir)) {
+    assert(fs.existsSync(path.join(rawDir, 'parts-index.json')), 'parts-index.json mirrored to raw/')
+    assert(fs.existsSync(path.join(rawDir, 'parts-curated.json')), 'parts-curated.json mirrored to raw/')
+    assert(fs.existsSync(path.join(rawDir, 'elements-index.json')), 'elements-index.json mirrored to raw/')
+  }
+
   // ----------------------------------------------------
   // TEST SUITE 3: Category Partitioning
   // ----------------------------------------------------

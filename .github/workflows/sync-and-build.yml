@@ -43,10 +43,14 @@ jobs:
 
       - name: Commit or Open PR
         if: steps.git-diff.outputs.has_changes == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git checkout -b chore/ldraw-weekly-sync-${{ github.run_id }}
-          git add manifests/ indices/ bundles/
+          BRANCH_NAME="chore/ldraw-weekly-sync-${{ github.run_id }}"
+          git checkout -b "$BRANCH_NAME"
+          git add manifests/ indices/ bundles/ data/
           git commit -m "chore(catalog): weekly upstream LDraw parts sync and bundle rebuild"
-          git push origin chore/ldraw-weekly-sync-${{ github.run_id }}
+          git push origin "$BRANCH_NAME"
+          gh pr create --fill --head "$BRANCH_NAME" --base main || gh pr create --title "chore(catalog): weekly upstream LDraw parts sync and bundle rebuild" --body "Automated weekly sync of upstream LDraw parts and bundles." --head "$BRANCH_NAME" --base main
