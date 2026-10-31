@@ -102,6 +102,18 @@ function deployPrebuiltArtifacts(distDir) {
     console.log('[build-all] Copied CAreadme.txt to dist/raw/')
   }
 
+  // Copy raw/parts/ and raw/p/ into dist/raw/parts/ and dist/raw/p/
+  const rawParts = path.join(REPO_ROOT, 'raw', 'parts')
+  if (fs.existsSync(rawParts)) {
+    fs.cpSync(rawParts, path.join(distRaw, 'parts'), { recursive: true })
+    console.log('[build-all] Copied raw/parts/ to dist/raw/parts/')
+  }
+  const rawP = path.join(REPO_ROOT, 'raw', 'p')
+  if (fs.existsSync(rawP)) {
+    fs.cpSync(rawP, path.join(distRaw, 'p'), { recursive: true })
+    console.log('[build-all] Copied raw/p/ to dist/raw/p/')
+  }
+
   // Mirror elements-index.json, parts-index.json, and parts-curated.json into dist/raw/
   const mirroredIndices = ['elements-index.json', 'parts-index.json', 'parts-curated.json']
   for (const file of mirroredIndices) {
@@ -196,6 +208,18 @@ async function main() {
   } else if (fs.existsSync(path.join(REPO_ROOT, 'raw', 'CAreadme.txt'))) {
     fs.copyFileSync(path.join(REPO_ROOT, 'raw', 'CAreadme.txt'), path.join(distRaw, 'CAreadme.txt'))
     console.log('[build-all] Copied CAreadme.txt to dist/raw/')
+  }
+
+  // Copy sourceDir/parts/ and sourceDir/p/ into dist/raw/parts/ and dist/raw/p/
+  const srcParts = path.join(sourceDir, 'parts')
+  if (fs.existsSync(srcParts)) {
+    fs.cpSync(srcParts, path.join(distRaw, 'parts'), { recursive: true })
+    console.log('[build-all] Copied sourceDir/parts/ to dist/raw/parts/')
+  }
+  const srcP = path.join(sourceDir, 'p')
+  if (fs.existsSync(srcP)) {
+    fs.cpSync(srcP, path.join(distRaw, 'p'), { recursive: true })
+    console.log('[build-all] Copied sourceDir/p/ to dist/raw/p/')
   }
 
   // Mirror elements-index.json, parts-index.json, and parts-curated.json into dist/raw/

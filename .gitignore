@@ -2,8 +2,7 @@
 node_modules/
 
 # Build artifacts
-dist/raw/
-raw/
+/raw/
 *.log
 
 # OS / Editor

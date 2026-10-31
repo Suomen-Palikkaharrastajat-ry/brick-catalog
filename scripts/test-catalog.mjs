@@ -166,6 +166,9 @@ async function runTests() {
     assert(fs.existsSync(path.join(rawDir, 'parts-index.json')), 'parts-index.json mirrored to raw/')
     assert(fs.existsSync(path.join(rawDir, 'parts-curated.json')), 'parts-curated.json mirrored to raw/')
     assert(fs.existsSync(path.join(rawDir, 'elements-index.json')), 'elements-index.json mirrored to raw/')
+    assert(fs.existsSync(path.join(rawDir, 'parts', '3005.dat')), 'dist/raw/parts/3005.dat exists')
+    assert(fs.existsSync(path.join(rawDir, 'parts', '3004.dat')), 'dist/raw/parts/3004.dat exists')
+    assert(fs.existsSync(path.join(rawDir, 'p', 'stud.dat')), 'dist/raw/p/stud.dat exists')
   }
 
   // ----------------------------------------------------
