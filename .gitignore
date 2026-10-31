@@ -1,0 +1,13 @@
+# Dependencies
+node_modules/
+
+# Build artifacts
+dist/raw/
+raw/
+*.log
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
