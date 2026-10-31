@@ -1,11 +1,11 @@
 {
   "version": "1.0.0",
   "ldrawRelease": "2023-01",
-  "generatedAt": "2026-10-31T15:55:23.007Z",
+  "generatedAt": "2026-10-31T18:26:07.354Z",
   "stats": {
-    "totalManifestEntries": 48015,
-    "partsCount": 24856,
-    "subpartsCount": 9266,
-    "primitivesCount": 2844
+    "totalManifestEntries": 1097,
+    "partsCount": 192,
+    "subpartsCount": 89,
+    "primitivesCount": 415
   }
 }

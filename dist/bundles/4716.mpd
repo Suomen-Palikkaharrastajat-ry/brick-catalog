@@ -1,0 +1,621 @@
+0 FILE 4716.dat
+0 Technic Worm Gear 2L
+0 Name: 4716.dat
+0 Author: Remco Braak [remco1974]
+0 !LDRAW_ORG Part UPDATE 2020-03
+0 !LICENSE Licensed under CC BY 2.0 and CC BY 4.0 : see CAreadme.txt
+
+0 BFC CERTIFY CCW
+
+0 !HISTORY 1997-09-29 [PTadmin] Official Update 1997-15
+0 !HISTORY 2007-07-08 [PTadmin] Header formatted for Contributor Agreement
+0 !HISTORY 2008-07-01 [PTadmin] Official Update 2008-01
+0 !HISTORY 2008-07-07 [technog] added BFC, corrected for update of 4716b.dat (2003-12-26)
+0 !HISTORY 2008-07-08 [technog] corrected for rename of 4716b.dat to s\4716s01.dat (2004-01-05)
+0 !HISTORY 2009-12-29 [PTadmin] Official Update 2009-03
+0 !HISTORY 2019-02-24 [arezey] Moved most geometry into a new subfile
+0 !HISTORY 2020-12-29 [PTadmin] Official Update 2020-03
+
+
+1 16 0 0 -20 1 0 0 0 0 1 0 40 0 axlehole.dat
+1 16 0 0 -20 1 0 0 0 0 1 0 1 0 axlehol2.dat
+1 16 0 0 20 1 0 0 0 0 1 0 1 0 axlehol2.dat
+1 16 0 0 0 1 0 0 0 1 0 0 0 1 s\4716s02.dat
+0 FILE axlehole.dat
+0 Technic Axle Hole Closed
+0 Name: axlehole.dat
+0 Author: James Jessiman
+0 !LDRAW_ORG Primitive UPDATE 2022-02
+0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
+
+0 BFC CERTIFY CCW
+
+0 !HISTORY 2000-04-23 [sbliss] Added conditional edges along outermost diameters
+0 !HISTORY 2000-05-07 [PTadmin] Official Update 2000-01
+0 !HISTORY 2002-05-08 [OrionP] Made BFC compliant
+0 !HISTORY 2002-08-18 [PTadmin] Official Update 2002-04
+0 !HISTORY 2002-11-08 [OrionP] Adjusted fit and precision
+0 !HISTORY 2003-03-12 [PTadmin] Official Update 2003-01
+0 !HISTORY 2005-05-15 [guyvivan] Use 1-8chrd.dat primitive and made BFC'ed CCW
+0 !HISTORY 2005-12-28 [PTadmin] Official Update 2005-01
+0 !HISTORY 2007-06-24 [PTadmin] Header formatted for Contributor Agreement
+0 !HISTORY 2008-07-01 [PTadmin] Official Update 2008-01
+0 !HISTORY 2021-03-25 [Sirio] Added adapter rings and rounded to four decimals
+0 !HISTORY 2021-12-20 [MagFors] Reshaped the hole
+0 !HISTORY 2022-03-06 [PTadmin] Official Update 2022-02
+
+
+1 16 0 0 0 1 0 0 0 1 0 0 0 1 axl5hol9.dat
+1 16 0 1 0 1 0 0 0 1 0 0 0 1 axl5hol9.dat
+1 16 0 0 0 1 0 0 0 1 0 0 0 1 axl5ho10.dat
+1 16 0 1 0 1 0 0 0 -1 0 0 0 -1 axl5ho10.dat
+
+1 16 0 0 0 1 0 0 0 1 0 0 0 1 axl5hol8.dat
+
+0 // Adapter rings
+1 16 0 0 0 6 0 0 0 1 0 0 0 6 1-16chrd.dat
+1 16 0 0 0 0 0 6 0 1 0 6 0 0 1-16chrd.dat
+1 16 0 0 0 0 0 -6 0 1 0 6 0 0 1-16chrd.dat
+1 16 0 0 0 -6 0 0 0 1 0 0 0 6 1-16chrd.dat
+1 16 0 0 0 -6 0 0 0 1 0 0 0 -6 1-16chrd.dat
+1 16 0 0 0 0 0 -6 0 1 0 -6 0 0 1-16chrd.dat
+1 16 0 0 0 0 0 6 0 1 0 -6 0 0 1-16chrd.dat
+1 16 0 0 0 6 0 0 0 1 0 0 0 -6 1-16chrd.dat
+
+1 16 0 1 0 6 0 0 0 -1 0 0 0 6 1-16chrd.dat
+1 16 0 1 0 0 0 6 0 -1 0 6 0 0 1-16chrd.dat
+1 16 0 1 0 0 0 -6 0 -1 0 6 0 0 1-16chrd.dat
+1 16 0 1 0 -6 0 0 0 -1 0 0 0 6 1-16chrd.dat
+1 16 0 1 0 -6 0 0 0 -1 0 0 0 -6 1-16chrd.dat
+1 16 0 1 0 0 0 -6 0 -1 0 -6 0 0 1-16chrd.dat
+1 16 0 1 0 0 0 6 0 -1 0 -6 0 0 1-16chrd.dat
+1 16 0 1 0 6 0 0 0 -1 0 0 0 -6 1-16chrd.dat
+0 FILE axl5hol9.dat
+0 Technic Axle Hole Rounded Tooth Outer Edges
+0 Name: axl5hol9.dat
+0 Author: Magnus Forsberg [MagFors]
+0 !LDRAW_ORG Primitive UPDATE 2022-01
+0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
+
+0 BFC CERTIFY CCW
+
+0 !HISTORY 2022-01-14 [PTadmin] Official Update 2022-01
+
+
+2 24 5.6023 0 2 4 0 2
+2 24 4 0 2 2.5 0 2.5
+2 24 2.5 0 2.5 2 0 4
+2 24 2 0 4 2 0 5.6023
+2 24 -2 0 5.6023 -2 0 4
+2 24 -2 0 4 -2.5 0 2.5
+2 24 -2.5 0 2.5 -4 0 2
+2 24 -4 0 2 -5.6023 0 2
+2 24 -5.6023 0 -2 -4 0 -2
+2 24 -4 0 -2 -2.5 0 -2.5
+2 24 -2.5 0 -2.5 -2 0 -4
+2 24 -2 0 -4 -2 0 -5.6023
+2 24 2 0 -5.6023 2 0 -4
+2 24 2 0 -4 2.5 0 -2.5
+2 24 2.5 0 -2.5 4 0 -2
+2 24 4 0 -2 5.6023 0 -2
+0 FILE axl5ho10.dat
+0 Technic Axle Hole Rounded Tooth Surface
+0 Name: axl5ho10.dat
+0 Author: Magnus Forsberg [MagFors]
+0 !LDRAW_ORG Primitive UPDATE 2022-01
+0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
+
+0 BFC CERTIFY CCW
+
+0 !HISTORY 2022-01-14 [PTadmin] Official Update 2022-01
+
+
+1 16 0 0 0 5.54328 0 -2.2961 0 1 0 2.2961 0 5.54328 1-8chrd.dat
+1 16 0 0 0 -2.2961 0 -5.54328 0 1 0 5.54328 0 -2.2961 1-8chrd.dat
+1 16 0 0 0 -5.54328 0 2.2961 0 1 0 -2.2961 0 -5.54328 1-8chrd.dat
+1 16 0 0 0 2.2961 0 5.54328 0 1 0 -5.54328 0 2.2961 1-8chrd.dat
+3 16 5.5433 0 2.2961 2.2961 0 5.5433 2.5 0 2.5
+4 16 2.5 0 2.5 4 0 2 5.6023 0 2 5.5433 0 2.2961
+4 16 2 0 4 2.5 0 2.5 2.2961 0 5.5433 2 0 5.6023
+3 16 -2.5 0 2.5 -2.2961 0 5.5433 -5.5433 0 2.2961
+4 16 -2.5 0 2.5 -2 0 4 -2 0 5.6023 -2.2961 0 5.5433
+4 16 -5.6023 0 2 -4 0 2 -2.5 0 2.5 -5.5433 0 2.2961
+4 16 -4 0 -2 -5.6023 0 -2 -5.5433 0 -2.2961 -2.5 0 -2.5
+3 16 -5.5433 0 -2.2961 -2.2961 0 -5.5433 -2.5 0 -2.5
+4 16 -2.2961 0 -5.5433 -2 0 -5.6023 -2 0 -4 -2.5 0 -2.5
+3 16 2.2961 0 -5.5433 5.5433 0 -2.2961 2.5 0 -2.5
+4 16 2 0 -5.6023 2.2961 0 -5.5433 2.5 0 -2.5 2 0 -4
+4 16 4 0 -2 2.5 0 -2.5 5.5433 0 -2.2961 5.6023 0 -2
+0 FILE 1-8chrd.dat
+0 Chord 0.125
+0 Name: 1-8chrd.dat
+0 Author: Orion Pobursky [OrionP]
+0 !LDRAW_ORG Primitive UPDATE 2023-05
+0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
+
+0 BFC CERTIFY CCW
+
+0 !HISTORY 2004-04-22 [PTadmin] Official Update 2004-02
+0 !HISTORY 2007-06-22 [PTadmin] Header formatted for Contributor Agreement
+0 !HISTORY 2008-07-01 [PTadmin] Official Update 2008-01
+0 !HISTORY 2023-10-27 [OrionP] Rebuilt with PrimGen2, original author westrate
+0 !HISTORY 2023-10-31 [OrionP] Official Update 2023-05
+
+3 16 1 0 0 0.9239 0 0.3827 0.7071 0 0.7071
+0 FILE axl5hol8.dat
+0 Technic Axle Hole Rounded Perimeter
+0 Name: axl5hol8.dat
+0 Author: Magnus Forsberg [MagFors]
+0 !LDRAW_ORG Primitive UPDATE 2022-01
+0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
+
+0 BFC CERTIFY CCW
+
+0 !HISTORY 2022-01-14 [PTadmin] Official Update 2022-01
+
+
+4 16 6 1 0 6 0 0 5.6023 0 2 5.6023 1 2
+4 16 4 1 2 5.6023 1 2 5.6023 0 2 4 0 2
+4 16 4 1 2 4 0 2 2.5 0 2.5 2.5 1 2.5
+4 16 2.5 1 2.5 2.5 0 2.5 2 0 4 2 1 4
+4 16 2 1 4 2 0 4 2 0 5.6023 2 1 5.6023
+4 16 2 0 5.6023 0 0 6 0 1 6 2 1 5.6023
+4 16 0 1 6 0 0 6 -2 0 5.6023 -2 1 5.6023
+4 16 -2 1 4 -2 1 5.6023 -2 0 5.6023 -2 0 4
+4 16 -2 1 4 -2 0 4 -2.5 0 2.5 -2.5 1 2.5
+4 16 -2.5 1 2.5 -2.5 0 2.5 -4 0 2 -4 1 2
+4 16 -4 1 2 -4 0 2 -5.6023 0 2 -5.6023 1 2
+4 16 -5.6023 1 2 -5.6023 0 2 -6 0 0 -6 1 0
+4 16 -6 1 0 -6 0 0 -5.6023 0 -2 -5.6023 1 -2
+4 16 -5.6023 1 -2 -5.6023 0 -2 -4 0 -2 -4 1 -2
+4 16 -4 1 -2 -4 0 -2 -2.5 0 -2.5 -2.5 1 -2.5
+4 16 -2.5 1 -2.5 -2.5 0 -2.5 -2 0 -4 -2 1 -4
+4 16 -2 1 -4 -2 0 -4 -2 0 -5.6023 -2 1 -5.6023
+4 16 -2 0 -5.6023 0 0 -6 0 1 -6 -2 1 -5.6023
+4 16 0 1 -6 0 0 -6 2 0 -5.6023 2 1 -5.6023
+4 16 2 1 -5.6023 2 0 -5.6023 2 0 -4 2 1 -4
+4 16 2 1 -4 2 0 -4 2.5 0 -2.5 2.5 1 -2.5
+4 16 2.5 1 -2.5 2.5 0 -2.5 4 0 -2 4 1 -2
+4 16 4 1 -2 4 0 -2 5.6023 0 -2 5.6023 1 -2
+4 16 5.6023 1 -2 5.6023 0 -2 6 0 0 6 1 0
+
+2 24 5.6023 1 2 5.6023 0 2
+2 24 2 1 5.6023 2 0 5.6023
+2 24 -2 1 5.6023 -2 0 5.6023
+2 24 -5.6023 1 2 -5.6023 0 2
+2 24 -5.6023 1 -2 -5.6023 0 -2
+2 24 -2 1 -5.6023 -2 0 -5.6023
+2 24 2 1 -5.6023 2 0 -5.6023
+2 24 5.6023 1 -2 5.6023 0 -2
+
+5 24 6 1 0 6 0 0 5.6023 1 2 5.6023 1 -2
+5 24 4 1 2 4 0 2 5.6023 1 2 2.5 1 2.5
+5 24 2.5 1 2.5 2.5 0 2.5 2 1 4 4 1 2
+5 24 2 1 4 2 0 4 2.5 1 2.5 2 1 5.6023
+5 24 0 1 6 0 0 6 2 1 5.6023 -2 1 5.6023
+5 24 -2 1 4 -2 0 4 -2 1 5.6023 -2.5 1 2.5
+5 24 -2.5 1 2.5 -2.5 0 2.5 -2 1 4 -4 1 2
+5 24 -4 1 2 -4 0 2 -2.5 1 2.5 -5.6023 1 2
+5 24 -6 1 0 -6 0 0 -5.6023 1 2 -5.6023 1 -2
+5 24 -4 1 -2 -4 0 -2 -5.6023 1 -2 -2.5 1 -2.5
+5 24 -2.5 1 -2.5 -2.5 0 -2.5 -4 1 -2 -2 1 -4
+5 24 -2 1 -4 -2 0 -4 -2.5 1 -2.5 -2 1 -5.6023
+5 24 0 1 -6 0 0 -6 -2 1 -5.6023 2 1 -5.6023
+5 24 2 1 -4 2 0 -4 2 1 -5.6023 2.5 1 -2.5
+5 24 2.5 1 -2.5 2.5 0 -2.5 4 1 -2 2 1 -4
+5 24 4 1 -2 4 0 -2 5.6023 1 -2 2.5 1 -2.5
+0 FILE 1-16chrd.dat
+0 Chord 0.0625
+0 Name: 1-16chrd.dat
+0 Author: Philippe Hurbain [Philo]
+0 !LDRAW_ORG Primitive UPDATE 2015-01
+0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
+
+0 BFC CERTIFY CCW
+
+0 !HISTORY 2015-10-11 [PTadmin] Official Update 2015-01
+
+
+0 // This file is intentionally empty because at the current \P resolution,
+0 // an 1-16chrd is actually empty. However, this file still is present
+0 // to allow tools to do primitives substition and fill in a real chrd here,
+0 // or, if desired, to substitute this with the hi-res 48\1-16chrd.
+
+0 // This file is based on an idea by Darats at http://forums.ldraw.org/read.php?19,14500,14500#msg-14500
+
+1 16 0 0 0 1 0 0 0 1 0 0 0 1 empty.dat
+0 FILE empty.dat
+0 Empty
+0 Name: empty.dat
+0 Author: Steffen [Steffen]
+0 !LDRAW_ORG Primitive UPDATE 2025-08
+0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
+
+0 BFC CERTIFY CCW
+
+0 !HISTORY 2015-10-11 [PTadmin] Official Update 2015-01
+0 !HISTORY 2025-08-13 [OrionP] Fix comments
+0 !HISTORY 2025-08-31 [OrionP] Official Update 2025-08
+
+0 // Tool MLCad cannot handle really empty files. This file is used as a workaround.
+0 // It exceptionally contains forbidden non-LDRAW standard syntax to satisfy MLCad
+0 // until it is fixed OR a different editor has become the de-facto LDRAW standard.
+0 // The line being used here is an "impossible" conditional line which never should be visible,
+0 // additionally hidden by a syntax explicitly hiding it from displaying.
+
+0 MLCAD HIDE 5 24 0 0 0 0.0001 0 0 0.0001 -0.0001 0 0 0 0
+0 FILE axlehol2.dat
+0 Technic Axle Hole Side Edges
+0 Name: axlehol2.dat
+0 Author: James Jessiman
+0 !LDRAW_ORG Primitive UPDATE 2022-02
+0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
+
+0 BFC CERTIFY CCW
+
+0 !HISTORY 2002-11-08 [OrionP] Adjusted fit and precision
+0 !HISTORY 2003-03-12 [PTadmin] Official Update 2003-01
+0 !HISTORY 2007-06-24 [PTadmin] Header formatted for Contributor Agreement
+0 !HISTORY 2008-07-01 [PTadmin] Official Update 2008-01
+0 !HISTORY 2021-12-24 [MagFors] rounded to four decimals
+0 !HISTORY 2022-03-06 [PTadmin] Official Update 2022-02
+
+
+2 24 6 0 0 5.6023 0 2
+2 24 2 0 5.6023 0 0 6
+2 24 -6 0 0 -5.6023 0 2
+2 24 -2 0 5.6023 0 0 6
+2 24 6 0 0 5.6023 0 -2
+2 24 2 0 -5.6023 0 0 -6
+2 24 -6 0 0 -5.6023 0 -2
+2 24 -2 0 -5.6023 0 0 -6
+0 FILE s/4716s02.dat
+0 ~Technic Worm Gear Body
+0 Name: s\4716s02.dat
+0 Author: Santeri Piippo [arezey]
+0 !LDRAW_ORG Subpart UPDATE 2020-03
+0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
+
+0 BFC CERTIFY CCW
+
+0 !HISTORY 2019-03-02 [MagFors] Removed inner surfaces, subfiled end surface
+0 !HISTORY 2020-12-29 [PTadmin] Official Update 2020-03
+
+
+1 16 0 0 -20 1 0 0 0 1 0 0 0 1 s\4716s03.dat
+1 16 0 0 20 0 -1 0 -1 0 0 0 0 -1 s\4716s03.dat
+
+1 16 0 0 -20 0 1 0 1 0 0 0 0 -1 s\4716s01.dat
+1 16 0 0 -12 -1 0 0 0 -1 0 0 0 1 s\4716s01.dat
+1 16 0 0 -12 0 1 0 1 0 0 0 0 -1 s\4716s01.dat
+1 16 0 0 -4 -1 0 0 0 -1 0 0 0 1 s\4716s01.dat
+1 16 0 0 -4 0 1 0 1 0 0 0 0 -1 s\4716s01.dat
+1 16 0 0 4 -1 0 0 0 -1 0 0 0 1 s\4716s01.dat
+1 16 0 0 4 0 1 0 1 0 0 0 0 -1 s\4716s01.dat
+1 16 0 0 12 -1 0 0 0 -1 0 0 0 1 s\4716s01.dat
+1 16 0 0 12 0 1 0 1 0 0 0 0 -1 s\4716s01.dat
+1 16 0 0 20 -1 0 0 0 -1 0 0 0 1 s\4716s01.dat
+
+1 16 0 0 -18 -1 0 0 0 1 0 0 0 -1 s\4716s01.dat
+1 16 0 0 -10 0 1 0 -1 0 0 0 0 1 s\4716s01.dat
+1 16 0 0 -10 -1 0 0 0 1 0 0 0 -1 s\4716s01.dat
+1 16 0 0 -2 0 1 0 -1 0 0 0 0 1 s\4716s01.dat
+1 16 0 0 -2 -1 0 0 0 1 0 0 0 -1 s\4716s01.dat
+1 16 0 0 6 0 1 0 -1 0 0 0 0 1 s\4716s01.dat
+1 16 0 0 6 -1 0 0 0 1 0 0 0 -1 s\4716s01.dat
+1 16 0 0 14 0 1 0 -1 0 0 0 0 1 s\4716s01.dat
+1 16 0 0 14 -1 0 0 0 1 0 0 0 -1 s\4716s01.dat
+
+1 16 0 0 -16 1 0 0 0 1 0 0 0 1 s\4716s01.dat
+1 16 0 0 -16 0 -1 0 -1 0 0 0 0 -1 s\4716s01.dat
+1 16 0 0 -8 1 0 0 0 1 0 0 0 1 s\4716s01.dat
+1 16 0 0 -8 0 -1 0 -1 0 0 0 0 -1 s\4716s01.dat
+1 16 0 0 0 1 0 0 0 1 0 0 0 1 s\4716s01.dat
+1 16 0 0 0 0 -1 0 -1 0 0 0 0 -1 s\4716s01.dat
+1 16 0 0 8 1 0 0 0 1 0 0 0 1 s\4716s01.dat
+1 16 0 0 8 0 -1 0 -1 0 0 0 0 -1 s\4716s01.dat
+1 16 0 0 16 1 0 0 0 1 0 0 0 1 s\4716s01.dat
+1 16 0 0 16 0 -1 0 -1 0 0 0 0 -1 s\4716s01.dat
+
+1 16 0 0 -14 0 -1 0 1 0 0 0 0 1 s\4716s01.dat
+1 16 0 0 -14 1 0 0 0 -1 0 0 0 -1 s\4716s01.dat
+1 16 0 0 -6 0 -1 0 1 0 0 0 0 1 s\4716s01.dat
+1 16 0 0 -6 1 0 0 0 -1 0 0 0 -1 s\4716s01.dat
+1 16 0 0 2 0 -1 0 1 0 0 0 0 1 s\4716s01.dat
+1 16 0 0 2 1 0 0 0 -1 0 0 0 -1 s\4716s01.dat
+1 16 0 0 10 0 -1 0 1 0 0 0 0 1 s\4716s01.dat
+1 16 0 0 10 1 0 0 0 -1 0 0 0 -1 s\4716s01.dat
+1 16 0 0 18 0 -1 0 1 0 0 0 0 1 s\4716s01.dat
+
+1 16 0 0 -18 1.81429 0 0 0 -1.81429 0 0 0 -1 s\4716s04.dat
+1 16 0 0 -16 0 1.81429 0 1.81429 0 0 0 0 -1 s\4716s04.dat
+1 16 0 0 -14 -1.81429 0 0 0 1.81429 0 0 0 -1 s\4716s04.dat
+1 16 0 0 -12 0 -1.81429 0 -1.81429 0 0 0 0 -1 s\4716s04.dat
+1 16 0 0 -10 1.81429 0 0 0 -1.81429 0 0 0 -1 s\4716s04.dat
+1 16 0 0 -8 0 1.81429 0 1.81429 0 0 0 0 -1 s\4716s04.dat
+1 16 0 0 -6 -1.81429 0 0 0 1.81429 0 0 0 -1 s\4716s04.dat
+1 16 0 0 -4 0 -1.81429 0 -1.81429 0 0 0 0 -1 s\4716s04.dat
+1 16 0 0 -2 1.81429 0 0 0 -1.81429 0 0 0 -1 s\4716s04.dat
+1 16 0 0 0 0 1.81429 0 1.81429 0 0 0 0 -1 s\4716s04.dat
+1 16 0 0 2 -1.81429 0 0 0 1.81429 0 0 0 -1 s\4716s04.dat
+1 16 0 0 4 0 -1.81429 0 -1.81429 0 0 0 0 -1 s\4716s04.dat
+1 16 0 0 6 1.81429 0 0 0 -1.81429 0 0 0 -1 s\4716s04.dat
+1 16 0 0 8 0 1.81429 0 1.81429 0 0 0 0 -1 s\4716s04.dat
+1 16 0 0 10 -1.81429 0 0 0 1.81429 0 0 0 -1 s\4716s04.dat
+1 16 0 0 12 0 -1.81429 0 -1.81429 0 0 0 0 -1 s\4716s04.dat
+1 16 0 0 14 1.81429 0 0 0 -1.81429 0 0 0 -1 s\4716s04.dat
+1 16 0 0 16 0 1.81429 0 1.81429 0 0 0 0 -1 s\4716s04.dat
+1 16 0 0 18 -1.81429 0 0 0 1.81429 0 0 0 -1 s\4716s04.dat
+
+1 16 0 0 -18 0 1 0 -1 0 0 0 0 1 s\4716s04.dat
+1 16 0 0 -16 1 0 0 0 1 0 0 0 1 s\4716s04.dat
+1 16 0 0 -14 0 -1 0 1 0 0 0 0 1 s\4716s04.dat
+1 16 0 0 -12 -1 0 0 0 -1 0 0 0 1 s\4716s04.dat
+1 16 0 0 -10 0 1 0 -1 0 0 0 0 1 s\4716s04.dat
+1 16 0 0 -8 1 0 0 0 1 0 0 0 1 s\4716s04.dat
+1 16 0 0 -6 0 -1 0 1 0 0 0 0 1 s\4716s04.dat
+1 16 0 0 -4 -1 0 0 0 -1 0 0 0 1 s\4716s04.dat
+1 16 0 0 -2 0 1 0 -1 0 0 0 0 1 s\4716s04.dat
+1 16 0 0 0 1 0 0 0 1 0 0 0 1 s\4716s04.dat
+1 16 0 0 2 0 -1 0 1 0 0 0 0 1 s\4716s04.dat
+1 16 0 0 4 -1 0 0 0 -1 0 0 0 1 s\4716s04.dat
+1 16 0 0 6 0 1 0 -1 0 0 0 0 1 s\4716s04.dat
+1 16 0 0 8 1 0 0 0 1 0 0 0 1 s\4716s04.dat
+1 16 0 0 10 0 -1 0 1 0 0 0 0 1 s\4716s04.dat
+1 16 0 0 12 -1 0 0 0 -1 0 0 0 1 s\4716s04.dat
+1 16 0 0 14 0 1 0 -1 0 0 0 0 1 s\4716s04.dat
+1 16 0 0 16 1 0 0 0 1 0 0 0 1 s\4716s04.dat
+1 16 0 0 18 0 -1 0 1 0 0 0 0 1 s\4716s04.dat
+0 FILE s/4716s03.dat
+0 ~Technic Worm Gear End Surface
+0 Name: s\4716s03.dat
+0 Author: Magnus Forsberg [MagFors]
+0 !LDRAW_ORG Subpart UPDATE 2020-03
+0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
+
+0 BFC CERTIFY CCW
+
+0 !HISTORY 2020-12-29 [PTadmin] Official Update 2020-03
+
+
+1 16 0 0 0 0 0 -1 1 0 0 0 1 0 1-4ring6.dat
+1 16 0 0 0 -6 0 0 0 0 -6 0 1 0 3-4ndis.dat
+1 16 0 0 0 0 0 12.7 -12.7 0 0 0 1 0 1-4chrd.dat
+4 16 10.4168 4.3148 0 12.7 0 0 6 0 0 6 6 0
+4 16 3.2241 7.7837 0 6.9651 6.9651 0 10.4168 4.3148 0 6 6 0
+4 16 0 7 0 3.2241 7.7837 0 6 6 0 0 6 0
+4 16 -7.7837 -3.2241 0 -7 0 0 -6 0 0 -6 -6 0
+4 16 -7.7837 -3.2241 0 -6 -6 0 -4.3148 -10.4168 0 -6.9651 -6.9651 0
+4 16 0 -12.7 0 -4.3148 -10.4168 0 -6 -6 0 0 -6 0
+3 16 6 -6 0 0 -12.7 0 0 -6 0
+3 16 12.7 0 0 6 -6 0 6 0 0
+3 16 0 -12.7 0 6 -6 0 12.7 0 0
+
+3 16 10.4168 4.3148 0 11.7333 4.8601 .5 12.7 0 0
+3 16 10.4168 4.3148 0 6.9651 6.9651 0 8.9803 8.9803 1
+3 16 8.9803 8.9803 1 11.7333 4.8601 .5 10.4168 4.3148 0
+3 16 6.9651 6.9651 0 3.2241 7.7837 0 4.8601 11.7333 1.5
+3 16 4.8601 11.7333 1.5 8.9803 8.9803 1 6.9651 6.9651 0
+3 16 3.2241 7.7837 0 0 7 0 0 12.7 2
+3 16 0 12.7 2 4.8601 11.7333 1.5 3.2241 7.7837 0
+5 24 10.4168 4.3148 0 11.7333 4.8601 .5 12.7 0 0 8.9803 8.9803 1
+5 24 6.9651 6.9651 0 8.9803 8.9803 1 4.8601 11.7333 1.5 10.4168 4.3148 0
+5 24 3.2241 7.7837 0 4.8601 11.7333 1.5 0 12.7 2 6.9651 6.9651 0
+5 24 0 7 0 0 12.7 2 -4.8601 11.7333 2.5 3.2241 7.7837 0
+5 24 8.9803 8.9803 1 10.4168 4.3148 0 11.73 4.86 .5 6.9651 6.9651 0
+5 24 4.8601 11.7333 1.5 6.9651 6.9651 0 8.9803 8.9803 1 3.2241 7.7837 0
+5 24 0 12.7 2 3.2241 7.7837 0 4.8601 11.7333 1.5 0 7 0
+
+3 16 -7 0 0 -7.7837 -3.2241 0 -6.4672 -2.6788 .5
+3 16 -7.7837 -3.2241 0 -6.9651 -6.9651 0 -4.9498 -4.9498 1
+3 16 -4.9498 -4.9498 1 -6.4672 -2.6788 .5 -7.7837 -3.2241 0
+3 16 -6.9651 -6.9651 0 -4.3148 -10.4168 0 -2.6788 -6.4672 1.5
+3 16 -2.6788 -6.4672 1.5 -4.9498 -4.9498 1 -6.9651 -6.9651 0
+3 16 -4.3148 -10.4168 0 0 -12.7 0 0 -7 2
+3 16 0 -7 2 -2.6788 -6.4672 1.5 -4.3148 -10.4168 0
+5 24 -4.3148 -10.4168 0 -2.6788 -6.4672 1.5 -6.9651 -6.9651 0 0 -7 2
+5 24 -6.9651 -6.9651 0 -4.9498 -4.9498 1 -2.6788 -6.4672 1.5 -7.7837 -3.2241 0
+5 24 -7.7837 -3.2241 0 -6.4672 -2.6788 .5 -4.9498 -4.9498 1 -7 0 0
+5 24 -4.3148 -10.4168 0 0 -7 2 0 -12.7 0 -2.6788 -6.4672 1.5
+5 24 -6.9651 -6.9651 0 -2.6788 -6.4672 1.5 -4.3148 -10.4168 0 -4.9498 -4.9498 1
+5 24 -7.7837 -3.2241 0 -4.9498 -4.9498 1 -6.4672 -2.6788 .5 -6.9651 -6.9651 0
+5 24 0 -12.7 0 0 -7 2 2.6788 -6.4672 2.5 -4.3148 -10.4168 0
+
+2 24 10.4168 4.3148 0 12.7 0 0
+2 24 6.9651 6.9651 0 10.4168 4.3148 0
+2 24 0 7 0 3.2241 7.7837 0
+2 24 3.2241 7.7837 0 6.9651 6.9651 0
+1 16 0 0 0 0 0 -7 7 0 0 0 1 0 1-4edge.dat
+1 16 0 0 0 0 0 -7 7 0 0 0 2 0 1-4cylh.dat
+1 16 0 0 0 0 0 -7 7 0 0 0 2 0 1-4edgh.dat
+2 24 -4.3148 -10.4168 0 0 -12.7 0
+2 24 -6.9651 -6.9651 0 -4.3148 -10.4168 0
+2 24 -7.7837 -3.2241 0 -6.9651 -6.9651 0
+2 24 -7 0 0 -7.7837 -3.2241 0
+1 16 0 0 0 0 0 12.7 -12.7 0 0 0 1 0 1-4edge.dat
+1 16 0 0 0 0 0 12.7 -12.7 0 0 0 2 0 1-4cylh.dat
+1 16 0 0 0 0 0 12.7 -12.7 0 0 0 2 0 1-4edgh.dat
+0 FILE 1-4ring6.dat
+0 Ring  6 x 0.25
+0 Name: 1-4ring6.dat
+0 Author: Franklin W. Cain [fwcain]
+0 !LDRAW_ORG Primitive UPDATE 2015-01
+0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
+
+0 BFC CERTIFY CCW
+
+0 !HISTORY 2001-12-31 [PTadmin] Official Update 2001-03
+0 !HISTORY 2007-06-22 [PTadmin] Header formatted for Contributor Agreement
+0 !HISTORY 2008-07-01 [PTadmin] Official Update 2008-01
+0 !HISTORY 2012-02-16 [Philo] Changed to CCW
+0 !HISTORY 2012-03-30 [PTadmin] Official Update 2012-01
+0 !HISTORY 2014-12-25 [MMR1988] Fixed a rounding issue
+0 !HISTORY 2015-10-11 [PTadmin] Official Update 2015-01
+
+
+4 16 7 0 0 6.4673 0 2.6789 5.5434 0 2.2962 6 0 0
+4 16 6.4673 0 2.6789 4.9497 0 4.9497 4.2426 0 4.2426 5.5434 0 2.2962
+4 16 4.9497 0 4.9497 2.6789 0 6.4673 2.2962 0 5.5434 4.2426 0 4.2426
+4 16 2.6789 0 6.4673 0 0 7 0 0 6 2.2962 0 5.5434
+0 // Build by Primitive Generator 2
+0 FILE 3-4ndis.dat
+0 Disc Negative 0.75
+0 Name: 3-4ndis.dat
+0 Author: James Jessiman
+0 !LDRAW_ORG Primitive UPDATE 2012-01
+0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
+
+0 BFC CERTIFY CCW
+
+0 !HISTORY 2002-03-23 [sbliss] Added BFC statement; compacted code
+0 !HISTORY 2002-04-25 [PTadmin] Official Update 2002-02
+0 !HISTORY 2007-06-24 [PTadmin] Header formatted for Contributor Agreement
+0 !HISTORY 2008-07-01 [PTadmin] Official Update 2008-01
+0 !HISTORY 2012-02-16 [Philo] Changed to CCW
+0 !HISTORY 2012-03-30 [PTadmin] Official Update 2012-01
+
+
+3 16 0.9239 0 0.3827 1 0 0 1 0 1
+3 16 0.7071 0 0.7071 0.9239 0 0.3827 1 0 1
+3 16 0.3827 0 0.9239 0.7071 0 0.7071 1 0 1
+3 16 0 0 1 0.3827 0 0.9239 1 0 1
+3 16 -0.3827 0 0.9239 0 0 1 -1 0 1
+3 16 -0.7071 0 0.7071 -0.3827 0 0.9239 -1 0 1
+3 16 -0.9239 0 0.3827 -0.7071 0 0.7071 -1 0 1
+3 16 -1 0 0 -0.9239 0 0.3827 -1 0 1
+3 16 -0.9239 0 -0.3827 -1 0 0 -1 0 -1
+3 16 -0.7071 0 -0.7071 -0.9239 0 -0.3827 -1 0 -1
+3 16 -0.3827 0 -0.9239 -0.7071 0 -0.7071 -1 0 -1
+3 16 0 0 -1 -0.3827 0 -0.9239 -1 0 -1
+0 FILE 1-4chrd.dat
+0 Chord 0.25
+0 Name: 1-4chrd.dat
+0 Author: Max Martin Richter [MMR1988]
+0 !LDRAW_ORG Primitive UPDATE 2023-05
+0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
+
+0 BFC CERTIFY CCW
+
+0 !HISTORY 2004-04-22 [PTadmin] Official Update 2004-02
+0 !HISTORY 2007-10-09 [PTadmin] Header formatted for Contributor Agreement
+0 !HISTORY 2008-07-01 [PTadmin] Official Update 2008-01
+0 !HISTORY 2012-08-02 [MMR1988] Re-creation with PrimGen2 and Rectifier
+0 !HISTORY 2012-08-09 [PTadmin] Official Update 2012-02
+0 !HISTORY 2023-10-27 [OrionP] Change author to MMR1988 from hafhead
+0 !HISTORY 2023-10-31 [OrionP] Official Update 2023-05
+
+4 16 0.9239 0 0.3827 0.3827 0 0.9239 0 0 1 1 0 0
+3 16 0.7071 0 0.7071 0.3827 0 0.9239 0.9239 0 0.3827
+0 FILE 1-4edge.dat
+0 Circle 0.25
+0 Name: 1-4edge.dat
+0 Author: James Jessiman
+0 !LDRAW_ORG Primitive UPDATE 2017-01
+0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
+
+0 BFC CERTIFY CCW
+
+0 !HISTORY 2007-06-22 [PTadmin] Header formatted for Contributor Agreement
+0 !HISTORY 2008-07-01 [PTadmin] Official Update 2008-01
+0 !HISTORY 2017-01-15 [Steffen] BFCed
+0 !HISTORY 2017-12-30 [PTadmin] Official Update 2017-01
+
+
+2 24 1 0 0 0.9239 0 0.3827
+2 24 0.9239 0 0.3827 0.7071 0 0.7071
+2 24 0.7071 0 0.7071 0.3827 0 0.9239
+2 24 0.3827 0 0.9239 0 0 1
+0 FILE 1-4cylh.dat
+0 Cylinder Helical 0.25
+0 Name: 1-4cylh.dat
+0 Author: Philippe Hurbain [Philo]
+0 !LDRAW_ORG Primitive UPDATE 2013-01
+0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
+
+0 BFC CERTIFY CCW
+
+0 !HISTORY 2013-07-21 [PTadmin] Official Update 2013-01
+
+
+3 16 1 0 0 0.9239 0.25 0.3827 0.9239 0 0.3827
+4 16 0.9239 0.25 0.3827 0.7071 0.5 0.7071 0.7071 0 0.7071 0.9239 0 0.3827
+5 24 0.9239 0 0.3827 0.9239 0.25 0.3827 0.7071 0 0.7071 1 0 0
+4 16 0.7071 0.5 0.7071 0.3827 0.75 0.9239 0.3827 0 0.9239 0.7071 0 0.7071
+5 24 0.7071 0 0.7071 0.7071 0.5 0.7071 0.3827 0 0.9239 0.9239 0 0.3827
+4 16 0.3827 0.75 0.9239 0 1 1 0 0 1 0.3827 0 0.9239
+5 24 0.3827 0 0.9239 0.3827 0.75 0.9239 0 0 1 0.7071 0 0.7071
+5 24 0 0 1 0 1 1 0.3827 0 0.9239 -1 0 1
+0 FILE 1-4edgh.dat
+0 Cylinder Helical Edge 0.25
+0 Name: 1-4edgh.dat
+0 Author: Philippe Hurbain [Philo]
+0 !LDRAW_ORG Primitive UPDATE 2013-02
+0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
+
+0 BFC CERTIFY CCW
+
+0 !HISTORY 2013-12-23 [PTadmin] Official Update 2013-02
+
+
+2 24 1 0 0 0.9239 0.25 0.3827
+2 24 0.9239 0.25 0.3827 0.7071 0.5 0.7071
+2 24 0.7071 0.5 0.7071 0.3827 0.75 0.9239
+2 24 0.3827 0.75 0.9239 0 1 1
+0 FILE s/4716s01.dat
+0 ~Technic Worm Gear Thread Surface
+0 Name: s\4716s01.dat
+0 Author: Remco Braak [remco1974]
+0 !LDRAW_ORG Subpart UPDATE 2020-03
+0 !LICENSE Licensed under CC BY 2.0 and CC BY 4.0 : see CAreadme.txt
+
+0 BFC CERTIFY CCW
+
+0 !HISTORY 1997-09-29 [PTadmin] Official Update 1997-15
+0 !HISTORY 2007-07-08 [PTadmin] Header formatted for Contributor Agreement
+0 !HISTORY 2008-07-01 [PTadmin] Official Update 2008-01
+0 !HISTORY 2008-07-07 [technog] BFC'd, corrected ends, added conditional lines (2003-12-26)
+0 !HISTORY 2008-07-08 [PTadmin] Moved from 4716b (2004-01-05)
+0 !HISTORY 2009-12-29 [PTadmin] Official Update 2009-03
+0 !HISTORY 2019-03-02 [MagFors] Removed inner surfaces, subfiled end surface
+0 !HISTORY 2020-12-29 [PTadmin] Official Update 2020-03
+
+
+3 16 0 7 -4 -2.6788 6.4672 -3.5 -4.8601 11.7333 -1.5
+3 16 -4.8601 11.7333 -1.5 0 12.7 -2 0 7 -4
+3 16 -2.6788 6.4672 -3.5 -4.9498 4.9498 -3 -8.9803 8.9803 -1
+3 16 -8.9803 8.9803 -1 -4.8601 11.7333 -1.5 -2.6788 6.4672 -3.5
+3 16 -4.9498 4.9498 -3 -6.4672 2.6788 -2.5 -11.7333 4.8601 -.5
+3 16 -11.7333 4.8601 -.5 -8.9803 8.9803 -1 -4.9498 4.9498 -3
+3 16 -6.4672 2.6788 -2.5 -7 0 -2 -12.7 0 0
+3 16 -12.7 0 0 -11.7333 4.8601 -.5 -6.4672 2.6788 -2.5
+5 24 -4.8601 11.7333 -1.5 -2.6788 6.4672 -3.5 0 7 -4 -8.9803 8.9803 -1
+5 24 -8.9803 8.9803 -1 -4.9498 4.9498 -3 -2.6788 6.4672 -3.5 -11.7333 4.8601 -.5
+5 24 -11.7333 4.8601 -.5 -6.4672 2.6788 -2.5 -4.9498 4.9498 -3 -12.7 0 0
+5 24 -12.7 0 0 -7 0 -2 -11.7333 -4.8601 .5 -6.4672 2.6788 -2.5
+5 24 -4.8601 11.7333 -1.5 0 7 -4 0 12.7 -2 -2.6788 6.4672 -3.5
+5 24 -8.9803 8.9803 -1 -2.6788 6.4672 -3.5 -4.8601 11.7333 -1.5 -4.9498 4.9498 -3
+5 24 -11.7333 4.8601 -.5 -4.9498 4.9498 -3 -8.9803 8.9803 -1 -6.4672 2.6788 -2.5
+5 24 -12.7 0 0 -6.4672 2.6788 -2.5 -11.7333 4.8601 -.5 -7 0 -2
+0 FILE s/4716s04.dat
+0 ~Cylinder Helical Cylinder  0.25 with Edges
+0 Name: s\4716s04.dat
+0 Author: Magnus Forsberg [MagFors]
+0 !LDRAW_ORG Subpart UPDATE 2020-03
+0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
+
+0 BFC CERTIFY CCW
+
+0 !HISTORY 2020-12-29 [PTadmin] Official Update 2020-03
+
+
+1 16 0 0 0 0 0 7 -7 0 0 0 2 0 1-4edgh.dat
+1 16 0 0 -2 0 0 7 -7 0 0 0 2 0 1-4edgh.dat
+4 16 0 -7 0 0 -7 -2 2.6789 -6.4673 -1.5 2.6789 -6.4673 .5
+4 16 2.6789 -6.4673 .5 2.6789 -6.4673 -1.5 4.9497 -4.9497 -1 4.9497 -4.9497 1
+4 16 4.9497 -4.9497 1 4.9497 -4.9497 -1 6.4673 -2.6789 -.5 6.4673 -2.6789 1.5
+4 16 6.4673 -2.6789 1.5 6.4673 -2.6789 -.5 7 0 0 7 0 2
+5 24 0 -7 0 0 -7 -2 2.6789 -6.4673 .5 -2.6789 -6.4673 -.5
+5 24 2.6789 -6.4673 0.5 2.6789 -6.4673 -1.5 0 -7 0 4.9497 -4.9497 1
+5 24 4.9497 -4.9497 1 4.9497 -4.9497 -1 2.6789 -6.4673 0.5 6.4673 -2.6789 1.5
+5 24 6.4673 -2.6789 1.5 6.4673 -2.6789 -0.5 4.9497 -4.9497 1 7 0 2
+5 24 7 0 2 7 0 0 6.4673 -2.6789 1.5 6.4673 2.6789 2.5

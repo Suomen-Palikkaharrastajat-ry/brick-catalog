@@ -1,0 +1,610 @@
+0 FILE 32235.dat
+0 Technic Axle Flexible 19
+0 Name: 32235.dat
+0 Author: Steve Bliss [sbliss]
+0 !LDRAW_ORG Part UPDATE 2022-02
+0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
+
+0 !HELP This part is written so the main axle (everything except the rod-sized
+0 !HELP 'skinny tips') can be curved smoothly. The main axle is a series of
+0 !HELP 4LDU-long segments, all of which are subfile references. This should
+0 !HELP optimize the ease of flexing.
+
+0 BFC CERTIFY CCW
+
+0 !HISTORY 2000-05-07 [PTadmin] Official Update 2000-01
+0 !HISTORY 2007-06-25 [PTadmin] Header formatted for Contributor Agreement
+0 !HISTORY 2008-07-01 [PTadmin] Official Update 2008-01
+0 !HISTORY 2017-08-08 [MagFors] bfc'd
+0 !HISTORY 2022-03-06 [PTadmin] Official Update 2022-02
+
+
+0 // Skinny Tip
+1 16 -170 0 0 0 5 0 -1 0 0 0 0 1 stud3a.dat
+0 // To flex the 'skinny tip', replace the above line with:
+0 // 1 16 -186 0 0 0 1 0 -1 0 0 0 0 1 stud3a.dat
+0 // 1 16 -182 0 0 0 -4 0 4 0 0 0 0 4 4-4cyli.dat
+0 // 1 16 -178 0 0 0 -4 0 4 0 0 0 0 4 4-4cyli.dat
+0 // 1 16 -174 0 0 0 -4 0 4 0 0 0 0 4 4-4cyli.dat
+0 // 1 16 -170 0 0 0 -4 0 4 0 0 0 0 4 4-4cyli.dat
+
+0 // Mixed Cylinder & Cross-axle end section
+1 16 -166 0 0 -1 0 0 0 1 0 0 0 -1 s\faxle1.dat
+1 16 -162 0 0 -1 0 0 0 1 0 0 0 -1 s\faxle2.dat
+1 16 -158 0 0 -1 0 0 0 1 0 0 0 -1 s\faxle3.dat
+1 16 -154 0 0 -1 0 0 0 1 0 0 0 -1 s\faxle4.dat
+1 16 -150 0 0 -1 0 0 0 1 0 0 0 -1 s\faxle5.dat
+
+0 // Cross axle main section
+1 16 -150 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 -146 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 -142 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 -138 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 -134 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 -130 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 -126 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 -122 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 -118 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 -114 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 -110 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 -106 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 -102 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 -98 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 -94 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 -90 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 -86 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 -82 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 -78 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 -74 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 -70 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 -66 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 -62 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 -58 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 -54 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 -50 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 -46 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 -42 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 -38 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 -34 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 -30 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 -26 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 -22 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 -18 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 -14 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 -10 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 -6 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 -2 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 2 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 6 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 10 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 14 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 18 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 22 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 26 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 30 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 34 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 38 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 42 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 46 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 50 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 54 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 58 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 62 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 66 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 70 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 74 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 78 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 82 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 86 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 90 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 94 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 98 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 102 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 106 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 110 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 114 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 118 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 122 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 126 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 130 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 134 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 138 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 142 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+1 16 146 0 0 0 4 0 -1 0 0 0 0 1 axlehol8.dat
+
+0 // Mixed Cylinder & Cross-axle section
+1 16 150 0 0 1 0 0 0 -1 0 0 0 -1 s\faxle5.dat
+1 16 154 0 0 1 0 0 0 -1 0 0 0 -1 s\faxle4.dat
+1 16 158 0 0 1 0 0 0 -1 0 0 0 -1 s\faxle3.dat
+1 16 162 0 0 1 0 0 0 -1 0 0 0 -1 s\faxle2.dat
+1 16 166 0 0 1 0 0 0 -1 0 0 0 -1 s\faxle1.dat
+
+0 // Skinny tip
+1 16 170 0 0 0 -5 0 1 0 0 0 0 1 stud3a.dat
+0 FILE stud3a.dat
+0 Stud Tube Solid without Base Edges
+0 Name: stud3a.dat
+0 Author: James Jessiman
+0 !LDRAW_ORG Primitive UPDATE 2003-02
+0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
+
+0 BFC CERTIFY CCW
+
+0 !HISTORY 2002-08-31 [izanette] Modified with WINDZ for BFC compliance
+0 !HISTORY 2003-08-01 [PTadmin] Official Update 2003-02
+0 !HISTORY 2007-06-24 [PTadmin] Header formatted for Contributor Agreement
+0 !HISTORY 2008-07-01 [PTadmin] Official Update 2008-01
+
+
+1 16 0 -4 0 4 0 0 0 1 0 0 0 4 4-4edge.dat
+1 16 0 -4 0 4 0 0 0 1 0 0 0 4 4-4disc.dat
+1 16 0 -4 0 4 0 0 0 4 0 0 0 4 4-4cyli.dat
+0
+0 FILE 4-4edge.dat
+0 Circle 1.0
+0 Name: 4-4edge.dat
+0 Author: James Jessiman
+0 !LDRAW_ORG Primitive UPDATE 2017-01
+0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
+
+0 BFC CERTIFY CCW
+
+0 !HISTORY 1998-12-15 [PTadmin] Official Update 1998-10
+0 !HISTORY 2005-12-28 [PTadmin] Official Update 2005-01
+0 !HISTORY 2007-06-24 [PTadmin] Header formatted for Contributor Agreement
+0 !HISTORY 2008-07-01 [PTadmin] Official Update 2008-01
+0 !HISTORY 2017-01-15 [Steffen] BFCed
+0 !HISTORY 2017-12-30 [PTadmin] Official Update 2017-01
+
+
+2 24 1 0 0 0.9239 0 0.3827
+2 24 0.9239 0 0.3827 0.7071 0 0.7071
+2 24 0.7071 0 0.7071 0.3827 0 0.9239
+2 24 0.3827 0 0.9239 0 0 1
+2 24 0 0 1 -0.3827 0 0.9239
+2 24 -0.3827 0 0.9239 -0.7071 0 0.7071
+2 24 -0.7071 0 0.7071 -0.9239 0 0.3827
+2 24 -0.9239 0 0.3827 -1 0 -0
+2 24 -1 0 -0 -0.9239 0 -0.3827
+2 24 -0.9239 0 -0.3827 -0.7071 0 -0.7071
+2 24 -0.7071 0 -0.7071 -0.3827 0 -0.9239
+2 24 -0.3827 0 -0.9239 0 0 -1
+2 24 0 0 -1 0.3827 0 -0.9239
+2 24 0.3827 0 -0.9239 0.7071 0 -0.7071
+2 24 0.7071 0 -0.7071 0.9239 0 -0.3827
+2 24 0.9239 0 -0.3827 1 0 0
+0 FILE 4-4disc.dat
+0 Disc 1.0
+0 Name: 4-4disc.dat
+0 Author: James Jessiman
+0 !LDRAW_ORG Primitive UPDATE 2002-02
+0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
+
+0 BFC CERTIFY CCW
+
+0 !HISTORY 1998-12-15 [PTadmin] Official Update 1998-10
+0 !HISTORY 2002-03-23 [sbliss] Added BFC statement
+0 !HISTORY 2002-04-25 [PTadmin] Official Update 2002-02
+0 !HISTORY 2007-06-24 [PTadmin] Header formatted for Contributor Agreement
+0 !HISTORY 2008-07-01 [PTadmin] Official Update 2008-01
+
+
+3 16 0 0 0 1 0 0 0.9239 0 0.3827
+3 16 0 0 0 0.9239 0 0.3827 0.7071 0 0.7071
+3 16 0 0 0 0.7071 0 0.7071 0.3827 0 0.9239
+3 16 0 0 0 0.3827 0 0.9239 0 0 1
+3 16 0 0 0 0 0 1 -0.3827 0 0.9239
+3 16 0 0 0 -0.3827 0 0.9239 -0.7071 0 0.7071
+3 16 0 0 0 -0.7071 0 0.7071 -0.9239 0 0.3827
+3 16 0 0 0 -0.9239 0 0.3827 -1 0 -0
+3 16 0 0 0 -1 0 -0 -0.9239 0 -0.3827
+3 16 0 0 0 -0.9239 0 -0.3827 -0.7071 0 -0.7071
+3 16 0 0 0 -0.7071 0 -0.7071 -0.3827 0 -0.9239
+3 16 0 0 0 -0.3827 0 -0.9239 0 0 -1
+3 16 0 0 0 0 0 -1 0.3827 0 -0.9239
+3 16 0 0 0 0.3827 0 -0.9239 0.7071 0 -0.7071
+3 16 0 0 0 0.7071 0 -0.7071 0.9239 0 -0.3827
+3 16 0 0 0 0.9239 0 -0.3827 1 0 0
+0
+0 FILE 4-4cyli.dat
+0 Cylinder 1.0
+0 Name: 4-4cyli.dat
+0 Author: James Jessiman
+0 !LDRAW_ORG Primitive UPDATE 2005-01
+0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
+
+0 BFC CERTIFY CCW
+
+0 !HISTORY 1998-12-15 [PTadmin] Official Update 1998-10
+0 !HISTORY 2002-03-23 [sbliss] Added BFC statement; merged headers from files in distributions LDraw 0.27 and Complete.
+0 !HISTORY 2002-04-25 [PTadmin] Official Update 2002-02
+0 !HISTORY 2004-12-14 [guyvivan] BFC CCW
+0 !HISTORY 2005-12-28 [PTadmin] Official Update 2005-01
+0 !HISTORY 2007-06-24 [PTadmin] Header formatted for Contributor Agreement
+0 !HISTORY 2008-07-01 [PTadmin] Official Update 2008-01
+
+
+4 16 1 1 0 0.9239 1 0.3827 0.9239 0 0.3827 1 0 0
+5 24 1 0 0 1 1 0 0.9239 0 0.3827 0.9239 0 -0.3827
+4 16 0.9239 1 0.3827 0.7071 1 0.7071 0.7071 0 0.7071 0.9239 0 0.3827
+5 24 0.9239 0 0.3827 0.9239 1 0.3827 0.7071 0 0.7071 1 0 0
+4 16 0.7071 1 0.7071 0.3827 1 0.9239 0.3827 0 0.9239 0.7071 0 0.7071
+5 24 0.7071 0 0.7071 0.7071 1 0.7071 0.3827 0 0.9239 0.9239 0 0.3827
+4 16 0.3827 1 0.9239 0 1 1 0 0 1 0.3827 0 0.9239
+5 24 0.3827 0 0.9239 0.3827 1 0.9239 0 0 1 0.7071 0 0.7071
+4 16 0 1 1 -0.3827 1 0.9239 -0.3827 0 0.9239 0 0 1
+5 24 0 0 1 0 1 1 -0.3827 0 0.9239 0.3827 0 0.9239
+4 16 -0.3827 1 0.9239 -0.7071 1 0.7071 -0.7071 0 0.7071 -0.3827 0 0.9239
+5 24 -0.3827 0 0.9239 -0.3827 1 0.9239 -0.7071 0 0.7071 0 0 1
+4 16 -0.7071 1 0.7071 -0.9239 1 0.3827 -0.9239 0 0.3827 -0.7071 0 0.7071
+5 24 -0.7071 0 0.7071 -0.7071 1 0.7071 -0.9239 0 0.3827 -0.3827 0 0.9239
+4 16 -0.9239 1 0.3827 -1 1 0 -1 0 0 -0.9239 0 0.3827
+5 24 -0.9239 0 0.3827 -0.9239 1 0.3827 -1 0 0 -0.7071 0 0.7071
+4 16 -1 1 0 -0.9239 1 -0.3827 -0.9239 0 -0.3827 -1 0 0
+5 24 -1 0 0 -1 1 0 -0.9239 0 -0.3827 -0.9239 0 0.3827
+4 16 -0.9239 1 -0.3827 -0.7071 1 -0.7071 -0.7071 0 -0.7071 -0.9239 0 -0.3827
+5 24 -0.9239 0 -0.3827 -0.9239 1 -0.3827 -0.7071 0 -0.7071 -1 0 0
+4 16 -0.7071 1 -0.7071 -0.3827 1 -0.9239 -0.3827 0 -0.9239 -0.7071 0 -0.7071
+5 24 -0.7071 0 -0.7071 -0.7071 1 -0.7071 -0.3827 0 -0.9239 -0.9239 0 -0.3827
+4 16 -0.3827 1 -0.9239 0 1 -1 0 0 -1 -0.3827 0 -0.9239
+5 24 -0.3827 0 -0.9239 -0.3827 1 -0.9239 0 0 -1 -0.7071 0 -0.7071
+4 16 0 1 -1 0.3827 1 -0.9239 0.3827 0 -0.9239 0 0 -1
+5 24 0 0 -1 0 1 -1 0.3827 0 -0.9239 -0.3827 0 -0.9239
+4 16 0.3827 1 -0.9239 0.7071 1 -0.7071 0.7071 0 -0.7071 0.3827 0 -0.9239
+5 24 0.3827 0 -0.9239 0.3827 1 -0.9239 0.7071 0 -0.7071 0 0 -1
+4 16 0.7071 1 -0.7071 0.9239 1 -0.3827 0.9239 0 -0.3827 0.7071 0 -0.7071
+5 24 0.7071 0 -0.7071 0.7071 1 -0.7071 0.9239 0 -0.3827 0.3827 0 -0.9239
+4 16 0.9239 1 -0.3827 1 1 0 1 0 0 0.9239 0 -0.3827
+5 24 0.9239 0 -0.3827 0.9239 1 -0.3827 1 0 0 0.7071 0 -0.7071
+0
+0 FILE s/faxle1.dat
+0 ~Flexible Axle Segment #1
+0 Name: s\faxle1.dat
+0 Author: Steve Bliss [sbliss]
+0 !LDRAW_ORG Subpart UPDATE 2022-02
+0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
+
+0 !HELP See flexible axle parts for usage information
+
+0 BFC CERTIFY CCW
+
+0 !HISTORY 2000-05-07 [PTadmin] Official Update 2000-01
+0 !HISTORY 2004-12-17 [cwdee] Inserted axlehol9 and BFCd
+0 !HISTORY 2005-12-28 [PTadmin] Official Update 2005-01
+0 !HISTORY 2007-09-14 [PTadmin] Header formatted for Contributor Agreement
+0 !HISTORY 2008-07-01 [PTadmin] Official Update 2008-01
+0 !HISTORY 2017-08-08 [MagFors] Minor clean-up
+0 !HISTORY 2022-03-06 [PTadmin] Official Update 2022-02
+
+
+1 16 4 0 0 0 1 0 4 0 0 0 0 4 4-4edge.dat
+1 16 4 0 0 0 1 0 6 0 0 0 0 6 4-4edge.dat
+1 16 4 0 0 0 -1 0 2 0 0 0 0 2 4-4ring2.dat
+1 16 0.4 0 0 0 1 0 1 0 0 0 0 1 axlehol3.dat
+1 16 0.4 0 0 0 3.6 0 6 0 0 0 0 6 4-4cyli.dat
+1 16 0.4 0 0 0 1 0 -1 0 0 0 0 1 axleho10.dat
+1 16 0.4 0 0 0 1 0 -1 0 0 0 0 1 axlehol9.dat
+1 16 0.4 0 0 0 -0.4 0 -1 0 0 0 0 1 axlehol8.dat
+0 FILE 4-4ring2.dat
+0 Ring  2 x 1.0
+0 Name: 4-4ring2.dat
+0 Author: James Jessiman
+0 !LDRAW_ORG Primitive UPDATE 2009-01
+0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
+
+0 BFC CERTIFY CCW
+
+0 !HISTORY 1998-12-15 [PTadmin] Official Update 1998-10
+0 !HISTORY 2002-04-05 [hafhead] Added BFC statement
+0 !HISTORY 2002-04-25 [PTadmin] Official Update 2002-02
+0 !HISTORY 2007-06-24 [PTadmin] Header formatted for Contributor Agreement
+0 !HISTORY 2008-07-01 [PTadmin] Official Update 2008-01
+0 !HISTORY 2008-08-26 [cwdee] Switch polygon winding and rename
+0 !HISTORY 2009-05-02 [PTadmin] Official Update 2009-01
+
+
+4 16 -1.1481 0 2.7717 -0.7654 0 1.8478 0 0 2 0 0 3
+4 16 -2.1213 0 2.1213 -1.4142 0 1.4142 -0.7654 0 1.8478 -1.1481 0 2.7717
+4 16 -2.7717 0 1.1481 -1.8478 0 0.7654 -1.4142 0 1.4142 -2.1213 0 2.1213
+4 16 -3 0 0 -2 0 0 -1.8478 0 0.7654 -2.7717 0 1.1481
+4 16 -2.7717 0 -1.1481 -1.8478 0 -0.7654 -2 0 0 -3 0 0
+4 16 -2.1213 0 -2.1213 -1.4142 0 -1.4142 -1.8478 0 -0.7654 -2.7717 0 -1.1481
+4 16 -1.1481 0 -2.7717 -0.7654 0 -1.8478 -1.4142 0 -1.4142 -2.1213 0 -2.1213
+4 16 0 0 -3 0 0 -2 -0.7654 0 -1.8478 -1.1481 0 -2.7717
+4 16 1.1481 0 -2.7717 0.7654 0 -1.8478 0 0 -2 0 0 -3
+4 16 2.1213 0 -2.1213 1.4142 0 -1.4142 0.7654 0 -1.8478 1.1481 0 -2.7717
+4 16 2.7717 0 -1.1481 1.8478 0 -0.7654 1.4142 0 -1.4142 2.1213 0 -2.1213
+4 16 3 0 0 2 0 0 1.8478 0 -0.7654 2.7717 0 -1.1481
+4 16 2.7717 0 1.1481 1.8478 0 0.7654 2 0 0 3 0 0
+4 16 2.1213 0 2.1213 1.4142 0 1.4142 1.8478 0 0.7654 2.7717 0 1.1481
+4 16 1.1481 0 2.7717 0.7654 0 1.8478 1.4142 0 1.4142 2.1213 0 2.1213
+4 16 0 0 3 0 0 2 0.7654 0 1.8478 1.1481 0 2.7717
+0
+0 FILE axlehol3.dat
+0 Technic Axle Hole Tooth Outer Edges
+0 Name: axlehol3.dat
+0 Author: James Jessiman
+0 !LDRAW_ORG Primitive UPDATE 2022-02
+0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
+
+0 BFC CERTIFY CCW
+
+0 !HISTORY 2002-11-08 [OrionP] Adjusted fit and precision
+0 !HISTORY 2003-03-12 [PTadmin] Official Update 2003-01
+0 !HISTORY 2007-06-24 [PTadmin] Header formatted for Contributor Agreement
+0 !HISTORY 2008-07-01 [PTadmin] Official Update 2008-01
+0 !HISTORY 2021-12-24 [MagFors] rounded to four decimals
+0 !HISTORY 2022-03-06 [PTadmin] Official Update 2022-02
+
+
+1 16 0 0 0 5.54328 0 -2.2961 0 1 0 2.2961 0 5.54328 1-8edge.dat
+2 24 5.6023 0 2 5.5433 0 2.2961
+2 24 2.2961 0 5.5433 2 0 5.6023
+1 16 0 0 0 2.2961 0 5.54328 0 1 0 -5.54328 0 2.2961 1-8edge.dat
+2 24 2 0 -5.6023 2.2961 0 -5.5433
+2 24 5.5433 0 -2.2961 5.6023 0 -2
+1 16 0 0 0 -5.54328 0 2.2961 0 1 0 -2.2961 0 -5.54328 1-8edge.dat
+2 24 -5.6023 0 -2 -5.5433 0 -2.2961
+2 24 -2.2961 0 -5.5433 -2 0 -5.6023
+1 16 0 0 0 -2.2961 0 -5.54328 0 1 0 5.54328 0 -2.2961 1-8edge.dat
+2 24 -2 0 5.6023 -2.2961 0 5.5433
+2 24 -5.5433 0 2.2961 -5.6023 0 2
+0 FILE 1-8edge.dat
+0 Circle 0.125
+0 Name: 1-8edge.dat
+0 Author: James Jessiman
+0 !LDRAW_ORG Primitive UPDATE 2017-01
+0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
+
+0 BFC CERTIFY CCW
+
+0 !HISTORY 2007-06-22 [PTadmin] Header formatted for Contributor Agreement
+0 !HISTORY 2008-07-01 [PTadmin] Official Update 2008-01
+0 !HISTORY 2017-01-15 [Steffen] BFCed
+0 !HISTORY 2017-12-30 [PTadmin] Official Update 2017-01
+
+
+2 24 1 0 0 0.9239 0 0.3827
+2 24 0.9239 0 0.3827 0.7071 0 0.7071
+0 FILE axleho10.dat
+0 Technic Axle Base Surface
+0 Name: axleho10.dat
+0 Author: Steve Bliss [sbliss]
+0 !LDRAW_ORG Primitive UPDATE 2025-11
+0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
+
+0 BFC CERTIFY CCW
+
+0 !HISTORY 2000-05-07 [PTadmin] Official Update 2000-01
+0 !HISTORY 2002-11-08 [OrionP] Adjusted fit and precision
+0 !HISTORY 2003-03-12 [PTadmin] Official Update 2003-01
+0 !HISTORY 2005-05-15 [guyvivan] Use 1-8chrd.dat primitive
+0 !HISTORY 2005-12-28 [PTadmin] Official Update 2005-01
+0 !HISTORY 2007-06-24 [PTadmin] Header formatted for Contributor Agreement
+0 !HISTORY 2008-07-01 [PTadmin] Official Update 2008-01
+0 !HISTORY 2024-01-24 [MagFors] Update description, to be only used on axles, not holes
+0 !HISTORY 2024-01-29 [OrionP] Official Update 2024-01
+0 !HISTORY 2025-10-11 [MagFors] corrected a typo
+0 !HISTORY 2025-11-30 [OrionP] Official Update 2025-11
+
+3 16 5.54328 0 2.2961 2 0 2 5.6023 0 2
+3 16 2 0 5.6023 2 0 2 2.296081 0 5.543226
+3 16 -2 0 2 -5.543226 0 2.296081 -5.6023 0 2
+3 16 -2 0 2 -2 0 5.6023 -2.2961 0 5.54328
+3 16 2 0 -2 5.543226 0 -2.296081 5.6023 0 -2
+3 16 2 0 -2 2 0 -5.6023 2.2961 0 -5.54328
+3 16 -5.54328 0 -2.2961 -2 0 -2 -5.6023 0 -2
+3 16 -2 0 -5.6023 -2 0 -2 -2.296081 0 -5.543226
+
+3 16 2.296081 0 5.543226 2 0 2 5.54328 0 2.2961
+1 16 0 0 0 5.54328 0 -2.2961 0 1 0 2.2961 0 5.54328 1-8chrd.dat
+3 16 -5.543226 0 2.296081 -2 0 2 -2.2961 0 5.54328
+1 16 0 0 0 -2.2961 0 -5.54328 0 1 0 5.54328 0 -2.2961 1-8chrd.dat
+3 16 -2.296081 0 -5.543226 -2 0 -2 -5.54328 0 -2.2961
+1 16 0 0 0 -5.54328 0 2.2961 0 1 0 -2.2961 0 -5.54328 1-8chrd.dat
+3 16 5.543226 0 -2.296081 2 0 -2 2.2961 0 -5.54328
+1 16 0 0 0 2.2961 0 5.54328 0 1 0 -5.54328 0 2.2961 1-8chrd.dat
+0 FILE 1-8chrd.dat
+0 Chord 0.125
+0 Name: 1-8chrd.dat
+0 Author: Orion Pobursky [OrionP]
+0 !LDRAW_ORG Primitive UPDATE 2023-05
+0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
+
+0 BFC CERTIFY CCW
+
+0 !HISTORY 2004-04-22 [PTadmin] Official Update 2004-02
+0 !HISTORY 2007-06-22 [PTadmin] Header formatted for Contributor Agreement
+0 !HISTORY 2008-07-01 [PTadmin] Official Update 2008-01
+0 !HISTORY 2023-10-27 [OrionP] Rebuilt with PrimGen2, original author westrate
+0 !HISTORY 2023-10-31 [OrionP] Official Update 2023-05
+
+3 16 1 0 0 0.9239 0 0.3827 0.7071 0 0.7071
+0 FILE axlehol9.dat
+0 Technic Axle Inner Edges
+0 Name: axlehol9.dat
+0 Author: Steve Bliss [sbliss]
+0 !LDRAW_ORG Primitive UPDATE 2025-10
+0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
+
+0 BFC CERTIFY CCW
+
+0 !HISTORY 2000-05-07 [PTadmin] Official Update 2000-01
+0 !HISTORY 2002-11-08 [OrionP] Adjusted fit and precision
+0 !HISTORY 2003-03-12 [PTadmin] Official Update 2003-01
+0 !HISTORY 2007-06-24 [PTadmin] Header formatted for Contributor Agreement
+0 !HISTORY 2008-07-01 [PTadmin] Official Update 2008-01
+0 !HISTORY 2024-01-24 [MagFors] Update description, to be only used on axles, not holes
+0 !HISTORY 2024-01-29 [OrionP] Official Update 2024-01
+0 !HISTORY 2025-10-11 [MagFors] Increased precision
+0 !HISTORY 2025-10-27 [OrionP] Official Update 2025-10
+
+2 24 5.6023 0 2 2 0 2
+2 24 2 0 2 2 0 5.6023
+2 24 -5.6023 0 2 -2 0 2
+2 24 -2 0 2 -2 0 5.6023
+2 24 5.6023 0 -2 2 0 -2
+2 24 2 0 -2 2 0 -5.6023
+2 24 -5.6023 0 -2 -2 0 -2
+2 24 -2 0 -2 -2 0 -5.6023
+0 FILE axlehol8.dat
+0 Technic Axle Perimeter
+0 Name: axlehol8.dat
+0 Author: Steve Bliss [sbliss]
+0 !LDRAW_ORG Primitive UPDATE 2024-01
+0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
+
+0 BFC CERTIFY CCW
+
+0 !HISTORY 2000-05-07 [PTadmin] Official Update 2000-01
+0 !HISTORY 2002-11-08 [OrionP] Adjusted fit and precision
+0 !HISTORY 2003-03-12 [PTadmin] Official Update 2003-01
+0 !HISTORY 2007-06-24 [PTadmin] Header formatted for Contributor Agreement
+0 !HISTORY 2008-07-01 [PTadmin] Official Update 2008-01
+0 !HISTORY 2021-03-25 [Sirio] Rounded to four decimals and added primitives
+0 !HISTORY 2022-03-06 [PTadmin] Official Update 2022-02
+0 !HISTORY 2024-01-24 [MagFors] Update description, to be only used on axles, not holes
+0 !HISTORY 2024-01-29 [OrionP] Official Update 2024-01
+
+0 // Primitives
+0 BFC INVERTNEXT
+1 16 3.80115 .5 3.80115 0 -1.80115 0 .5 0 0 0 0 -1.80115 box2-9p.dat
+0 BFC INVERTNEXT
+1 16 -3.80115 .5 3.80115 0 1.80115 0 .5 0 0 0 0 -1.80115 box2-9p.dat
+0 BFC INVERTNEXT
+1 16 -3.80115 .5 -3.80115 0 1.80115 0 .5 0 0 0 0 1.80115 box2-9p.dat
+0 BFC INVERTNEXT
+1 16 3.80115 .5 -3.80115 0 -1.80115 0 .5 0 0 0 0 1.80115 box2-9p.dat
+0 // Faces
+4 16 5.6023 1 2 5.6023 0 2 6 0 0 6 1 0
+4 16 2 1 5.6023 0 1 6 0 0 6 2 0 5.6023
+4 16 -2 1 5.6023 -2 0 5.6023 0 0 6 0 1 6
+4 16 -5.6023 1 2 -6 1 0 -6 0 0 -5.6023 0 2
+4 16 -5.6023 1 -2 -5.6023 0 -2 -6 0 0 -6 1 0
+4 16 2 1 -5.6023 2 0 -5.6023 0 0 -6 0 1 -6
+4 16 -2 1 -5.6023 0 1 -6 0 0 -6 -2 0 -5.6023
+4 16 5.6023 1 -2 6 1 0 6 0 0 5.6023 0 -2
+0 // Conditional lines
+5 24 0 0 6 0 1 6 -2 0 5.6023 2 0 5.6023
+5 24 -6 0 0 -6 1 0 -5.6023 0 -2 -5.6023 0 2
+5 24 0 0 -6 0 1 -6 -2 0 -5.6023 2 0 -5.6023
+5 24 6 0 0 6 1 0 5.6023 0 2 5.6023 0 -2
+0 FILE box2-9p.dat
+0 Box with  2 Faces with  3 Parallel Edges
+0 Name: box2-9p.dat
+0 Author: Willy Tschager [Holly-Wood]
+0 !LDRAW_ORG Primitive UPDATE 2024-01
+0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
+
+0 BFC CERTIFY CCW
+
+0 !HISTORY 2013-12-23 [PTadmin] Official Update 2013-02
+0 !HISTORY 2024-01-04 [Holly-Wood] Complete re-write, original by Duq
+0 !HISTORY 2024-01-29 [OrionP] Official Update 2024-01
+
+2 24 -1 1 1 1 1 1
+2 24 -1 1 -1 1 1 -1
+4 16 -1 1 1 1 1 1 1 1 -1 -1 1 -1
+
+2 24 -1 -1 1 1 -1 1
+4 16 1 -1 1 1 1 1 -1 1 1 -1 -1 1
+0 FILE s/faxle2.dat
+0 ~Flexible Axle Segment #2
+0 Name: s\faxle2.dat
+0 Author: Steve Bliss [sbliss]
+0 !LDRAW_ORG Subpart UPDATE 2022-02
+0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
+
+0 !HELP See flexible axle parts for usage information
+
+0 BFC CERTIFY CCW
+
+0 !HISTORY 2000-05-07 [PTadmin] Official Update 2000-01
+0 !HISTORY 2004-12-17 [cwdee] Inserted axlehol9 and BFCd
+0 !HISTORY 2005-12-28 [PTadmin] Official Update 2005-01
+0 !HISTORY 2007-09-14 [PTadmin] Header formatted for Contributor Agreement
+0 !HISTORY 2008-07-01 [PTadmin] Official Update 2008-01
+0 !HISTORY 2017-08-08 [MagFors] Minor clean-up
+0 !HISTORY 2022-03-06 [PTadmin] Official Update 2022-02
+
+
+1 16 0.8 0 0 0 1 0 1 0 0 0 0 1 axlehol3.dat
+1 16 0.8 0 0 0 -1 0 1 0 0 0 0 1 axleho10.dat
+1 16 0.8 0 0 0 -1 0 1 0 0 0 0 1 axlehol9.dat
+1 16 0.8 0 0 0 3.2 0 1 0 0 0 0 1 axlehol8.dat
+1 16 0 0 0 0 0.8 0 6 0 0 0 0 6 4-4cyli.dat
+0 FILE s/faxle3.dat
+0 ~Flexible Axle Segment #3
+0 Name: s\faxle3.dat
+0 Author: Steve Bliss [sbliss]
+0 !LDRAW_ORG Subpart UPDATE 2022-02
+0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
+
+0 !HELP See flexible axle parts for usage information
+
+0 BFC CERTIFY CCW
+
+0 !HISTORY 2000-05-07 [PTadmin] Official Update 2000-01
+0 !HISTORY 2004-12-17 [cwdee] Inserted axlehol9 and BFCd
+0 !HISTORY 2005-12-28 [PTadmin] Official Update 2005-01
+0 !HISTORY 2007-09-14 [PTadmin] Header formatted for Contributor Agreement
+0 !HISTORY 2008-07-01 [PTadmin] Official Update 2008-01
+0 !HISTORY 2017-08-08 [MagFors] Minor clean-up
+0 !HISTORY 2022-03-06 [PTadmin] Official Update 2022-02
+
+
+1 16 1.2 0 0 0 1 0 1 0 0 0 0 1 axlehol3.dat
+1 16 1.2 0 0 0 2.8 0 6 0 0 0 0 6 4-4cyli.dat
+1 16 1.2 0 0 0 1 0 -1 0 0 0 0 1 axleho10.dat
+1 16 1.2 0 0 0 1 0 -1 0 0 0 0 1 axlehol9.dat
+1 16 1.2 0 0 0 -1.2 0 -1 0 0 0 0 1 axlehol8.dat
+0 FILE s/faxle4.dat
+0 ~Flexible Axle Segment #4
+0 Name: s\faxle4.dat
+0 Author: Steve Bliss [sbliss]
+0 !LDRAW_ORG Subpart UPDATE 2022-02
+0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
+
+0 !HELP See flexible axle parts for usage information
+
+0 BFC CERTIFY CCW
+
+0 !HISTORY 2000-05-07 [PTadmin] Official Update 2000-01
+0 !HISTORY 2004-12-17 [cwdee] Inserted axlehol9 and BFCd
+0 !HISTORY 2005-12-28 [PTadmin] Official Update 2005-01
+0 !HISTORY 2007-09-14 [PTadmin] Header formatted for Contributor Agreement
+0 !HISTORY 2008-07-01 [PTadmin] Official Update 2008-01
+0 !HISTORY 2017-08-08 [MagFors] Minor clean-up
+0 !HISTORY 2022-03-06 [PTadmin] Official Update 2022-02
+
+
+1 16 1.6 0 0 0 1 0 1 0 0 0 0 1 axlehol3.dat
+1 16 1.6 0 0 0 -1 0 1 0 0 0 0 1 axleho10.dat
+1 16 1.6 0 0 0 1 0 1 0 0 0 0 1 axlehol9.dat
+1 16 1.6 0 0 0 2.4 0 1 0 0 0 0 1 axlehol8.dat
+1 16 0 0 0 0 1.6 0 6 0 0 0 0 6 4-4cyli.dat
+0 FILE s/faxle5.dat
+0 ~Flexible Axle Segment #5
+0 Name: s\faxle5.dat
+0 Author: Steve Bliss [sbliss]
+0 !LDRAW_ORG Subpart UPDATE 2022-02
+0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
+
+0 !HELP See flexible axle parts for usage information
+
+0 BFC CERTIFY CCW
+
+0 !HISTORY 2000-05-07 [PTadmin] Official Update 2000-01
+0 !HISTORY 2004-12-17 [cwdee] Inserted axlehol9 and BFCd
+0 !HISTORY 2005-12-28 [PTadmin] Official Update 2005-01
+0 !HISTORY 2007-09-14 [PTadmin] Header formatted for Contributor Agreement
+0 !HISTORY 2008-07-01 [PTadmin] Official Update 2008-01
+0 !HISTORY 2017-08-08 [MagFors] Minor clean-up
+0 !HISTORY 2022-03-06 [PTadmin] Official Update 2022-02
+
+
+1 16 2 0 0 0 2 0 6 0 0 0 0 6 4-4cyli.dat
+1 16 2 0 0 0 1 0 1 0 0 0 0 1 axlehol3.dat
+1 16 2 0 0 0 1 0 -1 0 0 0 0 1 axleho10.dat
+1 16 2 0 0 0 1 0 -1 0 0 0 0 1 axlehol9.dat
+1 16 2 0 0 0 -2 0 -1 0 0 0 0 1 axlehol8.dat
