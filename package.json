@@ -1,5 +1,5 @@
 {
-  "name": "brick-play-catalog",
+  "name": "brick-catalog",
   "version": "1.0.0",
   "description": "Standalone CDN-optimized LDraw parts catalog and MPD bundle repository for Brick Frame",
   "type": "module",

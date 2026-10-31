@@ -1,4 +1,4 @@
-# Palikkakehys LDraw Parts Catalog & CDN (`brick-play-catalog`)
+# Palikkakehys LDraw Parts Catalog & CDN (`brick-catalog`)
 
 Standalone, CDN-optimized LDraw catalog and MPD bundle repository published at **[https://catalog.palikkaharrastajat.fi/](https://catalog.palikkaharrastajat.fi/)**, designed for **Brick Frame** applications (Viewer, Studio, Brick Play).
 
@@ -12,7 +12,7 @@ In traditional LDraw web applications, resolving a single LEGO part requires dis
 ```
 On mobile cellular networks (40–120ms RTT), this 4–5 tier waterfall takes 500ms–1500ms of serialized round-trips for a single brick. Furthermore, 94.6% of parts start with a digit, which previously triggered false-positive 404 trial requests against primitive directories.
 
-`brick-play-catalog` provides:
+`brick-catalog` provides:
 1. **1-Request Part Loading via Pre-Bundled MPDs:** Pre-compiles the entire transitive dependency graph into self-contained Multi-Part Documents (`bundles/<part>.mpd`). One single HTTP GET loads the part and 100% of its subparts and primitives.
 2. **Deterministic Zero-404 Routing:** `manifests/library-manifest.json` provides an exact O(1) file-to-path lookup table, eliminating guesswork and false 404s.
 3. **Lightweight Curated Index (< 25 KB):** `indices/parts-curated.json` contains essential curated building parts in an Elm-compatible schema (`{ version: 1, parts: [...] }`) with minimal payload, avoiding the 200–500ms main-thread JSON decoding freeze on mobile Safari.
@@ -24,29 +24,13 @@ On mobile cellular networks (40–120ms RTT), this 4–5 tier waterfall takes 50
 ## 2. Directory Layout & CDN Endpoints
 
 ```text
-brick-play-catalog/
+brick-catalog/
 ├── CNAME                            # Custom domain: catalog.palikkaharrastajat.fi
 ├── index.html                       # Modern health status dashboard & MPD explorer
 ├── package.json                     # Pure Node.js ESM toolchain
-├── manifests/
-│   ├── library-manifest.json        # Exact file-to-path lookup table (zero-404 routing)
-│   └── version.json                 # LDraw release version, file counts, build timestamp
-├── indices/
-│   ├── parts-curated.json           # Curated essential index (< 25 KB payload)
-│   ├── parts-index.json             # Minified full index
-│   └── categories/                  # Partitioned by category
-│       ├── brick.json
-│       ├── plate.json
-│       ├── slope.json
-│       ├── tile.json
-│       ├── bracket.json
-│       └── technic.json
-├── bundles/                         # Self-contained pre-bundled MPDs (1 request = 1 part)
-│   ├── 3001.mpd                     # 2x4 Brick with 100% transitive DAG closure
-│   ├── 3647.mpd                     # Technic 8T Gear
-│   └── ...
 ├── data/
-│   └── curated-parts.json           # Catalog definitions for curated parts
+│   ├── curated-parts.json           # Catalog definitions for curated parts
+│   └── elements-index.json          # LDraw part -> BrickLink element ids
 ├── scripts/
 │   ├── sync-ldraw.mjs               # Syncs upstream LDraw or imports local parts
 │   ├── build-manifest.mjs           # Generates library-manifest.json & version.json
@@ -55,11 +39,49 @@ brick-play-catalog/
 │   ├── build-all.mjs                # Master build script preparing dist/ for Pages
 │   ├── test-catalog.mjs             # Complete verification suite (manifest, closure, size)
 │   └── preview.mjs                  # Lightweight local preview HTTP server
-└── .github/
-    └── workflows/
-        ├── deploy.yml               # Automated GitHub Pages deployment
-        └── sync-and-build.yml       # Weekly upstream sync & rebuild cron
+├── .github/
+│   └── workflows/
+│       └── deploy.yml               # Pages deployment (push, PR build, weekly cron)
+├── raw/                             # (generated, gitignored) LDraw library from npm run sync
+└── dist/                            # (generated, gitignored) npm run build output = the Pages site
+    ├── manifests/
+    │   ├── library-manifest.json    # Exact file-to-path lookup table (zero-404 routing)
+    │   └── version.json             # LDraw release version, file counts, build timestamp
+    ├── indices/
+    │   ├── parts-curated.json       # Curated essential index (< 25 KB payload)
+    │   ├── parts-index.json         # Minified full index
+    │   ├── elements-index.json      # Copy of data/elements-index.json
+    │   └── categories/              # Partitioned by category
+    │       ├── brick.json
+    │       ├── plate.json
+    │       ├── slope.json
+    │       ├── tile.json
+    │       ├── bracket.json
+    │       └── technic.json
+    ├── bundles/                     # Self-contained pre-bundled MPDs (1 request = 1 part)
+    │   ├── 3001.mpd                 # 2x4 Brick with 100% transitive DAG closure
+    │   ├── 3647.mpd                 # Technic 8T Gear
+    │   └── ...
+    └── raw/                         # parts/, p/, LDConfig.ldr, licence files
 ```
+
+Curated entries can carry `"hidden": true` (and `"movedTo": "<target>.dat"`
+for LDraw `~Moved to` stubs): hidden parts are still synced, bundled and routed
+by the manifest so existing models load, but they are not listed in
+`parts-curated.json`, `parts-index.json` or the category indices. The build
+fails when a visible curated part has become a `~Moved to` stub upstream. See
+`AGENTS.md` for the rules.
+
+Build outputs (`raw/`, `dist/`, and the `manifests/`, `indices/` and `bundles/`
+that the standalone `build:*` scripts write by default) are not tracked in git.
+Every deploy syncs the LDraw library and rebuilds `dist/` from scratch.
+
+`deploy.yml` runs on pushes to `main` (build, test, deploy), on pull requests
+(build and test only), on manual dispatch and weekly (Sunday 03:00 UTC) to pick
+up upstream LDraw changes without committing anything. A failed sync or test
+fails the run, and GitHub Pages keeps serving the last good deploy. GitHub
+disables scheduled workflows after 60 days without repository activity;
+re-enable the schedule from the Actions tab if that happens.
 
 ---
 
@@ -86,8 +108,10 @@ Configure environment variables in `brick-frame`:
 VITE_LDRAW_BASE="https://catalog.palikkaharrastajat.fi/raw"
 VITE_LDRAW_BUNDLES_BASE="https://catalog.palikkaharrastajat.fi/bundles"
 VITE_LDRAW_INDICES_BASE="https://catalog.palikkaharrastajat.fi/indices"
-VITE_LDRAW_MANIFEST_BASE="https://catalog.palikkaharrastajat.fi/manifests"
-VITE_LDRAW_FALLBACK_BASE="https://raw.githubusercontent.com/gkjohnson/ldraw-parts-library/master/complete/ldraw"
+VITE_LDRAW_MANIFEST_URL="https://catalog.palikkaharrastajat.fi/manifests/library-manifest.json"
+# Optional, unofficial full-library mirror for parts the catalog does not have;
+# leave unset (the default) to use only the catalog
+# VITE_LDRAW_FALLBACK_BASE="https://raw.githubusercontent.com/kulits/ldraw-parts/master/ldraw"
 ```
 
 In Elm (`LDraw.Resolve`):
@@ -100,24 +124,38 @@ In Elm (`LDraw.Resolve`):
 ## 5. Development & Build Commands
 
 ```bash
-# Sync parts library from local directory (or download remote)
-npm run sync -- --from-local ../viewer-app/public/ldraw
+# Sync the curated parts' closure from the current LDraw library into raw/
+# (downloads library.ldraw.org complete.zip, falling back to the kulits mirror)
+npm run sync -- --curated-only
 
-# Build manifest only
-npm run build:manifest
-
-# Build search indices (curated + categories)
-npm run build:indices
-
-# Build pre-bundled MPDs
-npm run build:bundles
+# ...or from an unpacked LDraw library on disk
+npm run sync -- --curated-only --from-local /path/to/ldraw
 
 # Complete master build (manifests, indices, bundles, dashboard, CNAME -> dist/)
+# dist/ is emptied first; the build fails if raw/ has not been synced
 npm run build
 
-# Run comprehensive test suite
+# Run comprehensive test suite against dist/
 npm test
 
 # Launch local preview server (port 8182)
 npm run preview
+
+# Individual steps (write to the gitignored manifests/, indices/, bundles/)
+npm run build:manifest
+npm run build:indices
+npm run build:bundles
 ```
+
+For local development of Brick Play, run the sync and build above: the Brick
+Play Vite dev server serves `../brick-catalog/dist` (for example `/raw/...`).
+
+---
+
+## 6. Licensing, Attribution & Trademarks
+
+- **LEGO®** is a registered trademark of the LEGO Group of companies, which does not sponsor, authorize, or endorse this site or project.
+- **LDraw™** is a trademark owned and licensed by the Estate of James Jessiman.
+- **Parts Library Attribution**: Parts library data, configurations, and models are copyright © 2002–2026 **The LDraw Parts Library** (LDraw.org), redistributable under Creative Commons Attribution (**CC BY 4.0** / **CC BY 2.0**). See [CAreadme.txt](raw/CAreadme.txt) and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+- **Software License**: The catalog generation tooling, build pipeline, and dashboard interface are licensed under the **MIT License**.
+

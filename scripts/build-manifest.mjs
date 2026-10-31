@@ -75,6 +75,26 @@ function scanDirectoryFiles(dir, baseDir) {
   return results
 }
 
+/**
+ * LDraw library release label for version.json:
+ * LDRAW_RELEASE env, else the provenance written by sync-ldraw.mjs
+ * (<source>/.ldraw-source: commit date and short sha), else "current".
+ */
+export function resolveLdrawRelease(sourceDir) {
+  if (process.env.LDRAW_RELEASE) return process.env.LDRAW_RELEASE
+  try {
+    const info = JSON.parse(fs.readFileSync(path.join(sourceDir, '.ldraw-source'), 'utf8'))
+    const date = typeof info.date === 'string' ? info.date.slice(0, 10) : null
+    const repo = /github\.com\/([^/]+\/[^/]+)\//.exec(info.source || '')?.[1]
+    const ref = info.commit ? `${repo || 'commit'}@${String(info.commit).slice(0, 7)}` : null
+    if (date && ref) return `${date} (${ref})`
+    if (date || ref) return date || ref
+  } catch {
+    // no provenance recorded
+  }
+  return 'current'
+}
+
 export function buildManifest(sourceDir, destDir) {
   if (!sourceDir || !fs.existsSync(sourceDir)) {
     throw new Error(`Source LDraw directory does not exist: ${sourceDir}`)
@@ -173,7 +193,7 @@ export function buildManifest(sourceDir, destDir) {
   const totalEntries = Object.keys(manifest).length
   const versionData = {
     version: '1.0.0',
-    ldrawRelease: '2023-01',
+    ldrawRelease: resolveLdrawRelease(sourceDir),
     generatedAt: new Date().toISOString(),
     stats: {
       totalManifestEntries: totalEntries,

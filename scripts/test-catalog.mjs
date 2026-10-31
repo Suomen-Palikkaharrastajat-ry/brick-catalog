@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 /**
  * scripts/test-catalog.mjs
- * Comprehensive automated test suite for brick-play-catalog:
+ * Comprehensive automated test suite for brick-catalog:
  *  1. Manifest integrity
  *  2. MPD closure (100% self-contained, 0 missing subfiles)
  *  3. Curated index size (<25 KB) & Elm schema validation
- *  4. Category index partitions
+ *  4. Category index partitions, MPD closure
+ *  4b. Legacy & moved parts (hidden curated entries stay live, out of indices)
  *  5. Dashboard validity and markup integrity
  */
 
@@ -78,12 +79,14 @@ function extractSubfiles(content) {
 
 async function runTests() {
   console.log('========================================================')
-  console.log('        BRICK PLAY CATALOG — VALIDATION SUITE           ')
+  console.log('            BRICK CATALOG — VALIDATION SUITE            ')
   console.log('========================================================\n')
 
-  const targetDir = fs.existsSync(path.join(REPO_ROOT, 'dist'))
-    ? path.join(REPO_ROOT, 'dist')
-    : REPO_ROOT
+  const targetDir = path.join(REPO_ROOT, 'dist')
+  if (!fs.existsSync(targetDir)) {
+    console.error(`dist/ not found at ${targetDir}. Run "npm run build" first.`)
+    process.exit(1)
+  }
 
   console.log(`Running tests against directory: ${targetDir}\n`)
 
@@ -153,6 +156,29 @@ async function runTests() {
     assert(partFiles.has('3024.dat'), 'Curated index includes 3024.dat (Plate 1x1)')
   }
 
+  const elementsIndexPath = path.join(targetDir, 'indices', 'elements-index.json')
+  assert(fs.existsSync(elementsIndexPath), 'elements-index.json exists in indices/')
+  if (fs.existsSync(elementsIndexPath)) {
+    const elData = JSON.parse(fs.readFileSync(elementsIndexPath, 'utf8'))
+    assert(elData.version === 1 && typeof elData.elements === 'object', 'elements-index.json has valid version and elements map')
+  }
+
+  // Backward compatibility mirror checks in raw/
+  const rawDir = path.join(targetDir, 'raw')
+  if (fs.existsSync(rawDir)) {
+    assert(fs.existsSync(path.join(rawDir, 'parts-index.json')), 'parts-index.json mirrored to raw/')
+    assert(fs.existsSync(path.join(rawDir, 'parts-curated.json')), 'parts-curated.json mirrored to raw/')
+    assert(fs.existsSync(path.join(rawDir, 'elements-index.json')), 'elements-index.json mirrored to raw/')
+    assert(fs.existsSync(path.join(rawDir, 'parts', '3005.dat')), 'dist/raw/parts/3005.dat exists')
+    assert(fs.existsSync(path.join(rawDir, 'parts', '3004.dat')), 'dist/raw/parts/3004.dat exists')
+    assert(fs.existsSync(path.join(rawDir, 'p', 'stud.dat')), 'dist/raw/p/stud.dat exists')
+  }
+  assert(
+    fs.existsSync(path.join(targetDir, 'raw', 'CAreadme.txt')),
+    'raw/CAreadme.txt (LDraw licence notice) is published',
+    path.join(targetDir, 'raw', 'CAreadme.txt')
+  )
+
   // ----------------------------------------------------
   // TEST SUITE 3: Category Partitioning
   // ----------------------------------------------------
@@ -215,6 +241,93 @@ async function runTests() {
       `All MPD bundles have 100% complete closure (${totalSubfilesVerified} subfile references verified, 0 missing)`,
       missingReferences.length > 0 ? JSON.stringify(missingReferences.slice(0, 5), null, 2) : ''
     )
+  }
+
+  // ----------------------------------------------------
+  // TEST SUITE 4b: Legacy & Moved Parts (hidden curated entries)
+  // ----------------------------------------------------
+  console.log('\n[Suite 4b: Legacy & moved parts]')
+  {
+    const curatedList = JSON.parse(fs.readFileSync(path.join(REPO_ROOT, 'data', 'curated-parts.json'), 'utf8'))
+    const byFile = new Map(curatedList.map((p) => [p.file, p]))
+    const hidden = curatedList.filter((p) => p.hidden)
+    const hiddenFiles = new Set(hidden.map((p) => p.file))
+    const distParts = path.join(targetDir, 'raw', 'parts')
+
+    const unpublished = curatedList.filter(
+      (p) =>
+        !fs.existsSync(path.join(bundlesDir, `${p.file.replace(/\.dat$/i, '')}.mpd`)) ||
+        !fs.existsSync(path.join(distParts, p.file))
+    )
+    assert(
+      unpublished.length === 0,
+      `Every curated entry (${curatedList.length}, ${hidden.length} hidden) has bundles/<n>.mpd and raw/parts/<file>`,
+      unpublished.map((p) => p.file).join(', ')
+    )
+
+    const indexFiles = [
+      path.join(targetDir, 'indices', 'parts-curated.json'),
+      path.join(targetDir, 'indices', 'parts-index.json'),
+      ...(fs.existsSync(categoriesDir)
+        ? fs.readdirSync(categoriesDir).filter((f) => f.endsWith('.json')).map((f) => path.join(categoriesDir, f))
+        : []),
+    ]
+    const leaked = []
+    for (const f of indexFiles) {
+      if (!fs.existsSync(f)) continue
+      for (const entry of JSON.parse(fs.readFileSync(f, 'utf8')).parts || []) {
+        if (hiddenFiles.has(entry[0])) leaked.push(`${path.basename(f)}:${entry[0]}`)
+      }
+    }
+    assert(leaked.length === 0, `No hidden entry appears in parts-curated, parts-index or categories/*.json`, leaked.join(', '))
+
+    // Only top-level raw/parts: raw/p has primitive stubs that real parts still use.
+    const badStubs = []
+    if (fs.existsSync(distParts)) {
+      for (const f of fs.readdirSync(distParts).filter((n) => n.toLowerCase().endsWith('.dat'))) {
+        const text = fs.readFileSync(path.join(distParts, f), 'utf8')
+        const first = (text.split(/\r?\n/).find((l) => l.trim() !== '') || '').trim()
+        if (!/^0\s+~Moved\s+to\b/i.test(first)) continue
+        const ref = text
+          .split(/\r?\n/)
+          .map((l) => l.trim().split(/\s+/))
+          .find((t) => t[0] === '1' && t.length >= 15)
+        const target = ref ? normalizeName(ref.slice(14).join(' ')) : null
+        const entry = byFile.get(f)
+        if (!entry || !entry.hidden || !entry.movedTo || normalizeName(entry.movedTo) !== target) {
+          badStubs.push(`${f} -> ${target}`)
+        }
+      }
+    }
+    assert(badStubs.length === 0, 'Every "~Moved to" stub in raw/parts is a hidden curated entry with the matching movedTo', badStubs.join(', '))
+
+    const brokenChains = []
+    for (const p of curatedList.filter((e) => e.movedTo)) {
+      const seen = new Set([p.file])
+      let cur = p
+      while (cur && cur.movedTo && !seen.has(cur.movedTo)) {
+        seen.add(cur.movedTo)
+        cur = byFile.get(cur.movedTo)
+      }
+      if (!cur || cur.movedTo || cur.hidden) brokenChains.push(p.file)
+    }
+    assert(brokenChains.length === 0, 'Every movedTo chain ends at a visible curated entry', brokenChains.join(', '))
+
+    const curatedBundles = new Set(curatedList.map((p) => `${p.file.replace(/\.dat$/i, '')}.mpd`))
+    const strayBundles = fs.existsSync(bundlesDir)
+      ? fs.readdirSync(bundlesDir).filter((f) => f.endsWith('.mpd') && !curatedBundles.has(f))
+      : []
+    assert(strayBundles.length === 0, 'No bundles/*.mpd without a curated entry', strayBundles.join(', '))
+
+    const curatedIndex = fs.existsSync(curatedIndexPath)
+      ? new Set(JSON.parse(fs.readFileSync(curatedIndexPath, 'utf8')).parts.map((p) => p[0]))
+      : new Set()
+    assert(
+      byFile.get('3648.dat')?.hidden === true && fs.existsSync(path.join(bundlesDir, '3648.mpd')),
+      'Moved stub 3648.dat is hidden and still bundled (old models keep loading)'
+    )
+    assert(fs.existsSync(path.join(bundlesDir, '3794b.mpd')), 'Legacy part 3794b.dat is still bundled')
+    assert(curatedIndex.has('3648b.dat') && !curatedIndex.has('3648.dat'), 'parts-curated.json lists 3648b.dat and not 3648.dat')
   }
 
   // ----------------------------------------------------

@@ -4,6 +4,15 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
+  schedule:
+    # Weekly rebuild from the current LDraw library, 03:00 UTC every Sunday.
+    # Nothing is committed; the site is rebuilt and redeployed. The run fails
+    # (and the last good deploy stays live) when an upstream change breaks
+    # the curated list, e.g. a curated part became a "~Moved to" stub.
+    - cron: '0 3 * * 0'
   workflow_dispatch:
 
 permissions:
@@ -12,15 +21,14 @@ permissions:
   id-token: write
 
 concurrency:
-  group: 'pages'
-  cancel-in-progress: true
+  group: pages-${{ github.ref }}
+  # Scheduled and push runs on main share this group; never cancel a run
+  # that may be in the middle of deploying.
+  cancel-in-progress: false
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -32,18 +40,28 @@ jobs:
 
       - name: Sync LDraw & Build Catalog
         run: |
-          node scripts/sync-ldraw.mjs
+          node scripts/sync-ldraw.mjs --curated-only
           npm run build
           npm test
 
       - name: Setup Pages
+        if: github.event_name != 'pull_request'
         uses: actions/configure-pages@v5
 
       - name: Upload Artifact
+        if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist
 
+  deploy:
+    needs: build
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
