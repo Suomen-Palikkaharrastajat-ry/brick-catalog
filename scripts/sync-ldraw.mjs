@@ -9,11 +9,21 @@
 
 import fs from 'node:fs'
 import path from 'node:path'
+import os from 'node:os'
+import { execSync, spawnSync } from 'node:child_process'
 import { fileURLToPath } from 'node:url'
+import { pipeline } from 'node:stream/promises'
+import { Readable } from 'node:stream'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 const REPO_ROOT = path.resolve(__dirname, '..')
+
+const LDRAW_SYNC_URL =
+  process.env.LDRAW_SYNC_URL || 'https://library.ldraw.org/library/updates/complete.zip'
+const LDRAW_FALLBACK_URL =
+  process.env.LDRAW_FALLBACK_URL ||
+  'https://raw.githubusercontent.com/gkjohnson/ldraw-parts-library/master/complete.zip'
 
 function parseArgs() {
   const args = process.argv.slice(2)
@@ -58,6 +68,7 @@ Options:
       options.fromLocal = path.resolve(process.env.LDRAW_SOURCE_DIR)
     } else {
       const defaultCandidates = [
+        path.resolve(REPO_ROOT, '../brick-frame/viewer-app/public/ldraw'),
         path.resolve(REPO_ROOT, '../viewer-app/public/ldraw'),
         path.resolve(REPO_ROOT, '../../viewer-app/public/ldraw'),
         '/workspace/brick-frame/viewer-app/public/ldraw',
@@ -191,10 +202,111 @@ async function syncFromLocal(sourceDir, destDir, curatedOnly) {
   }
 }
 
-async function syncRemote(destDir) {
-  console.log(`[sync-ldraw] Downloading official LDraw base library into ${destDir}...`)
-  fs.mkdirSync(destDir, { recursive: true })
-  console.log('[sync-ldraw] Remote sync fallback prepared.')
+async function downloadFile(url, destFilePath) {
+  console.log(`[sync-ldraw] Downloading archive from: ${url}`)
+
+  const hasCurl = spawnSync('curl', ['--version'], { stdio: 'ignore' }).status === 0
+  if (hasCurl) {
+    try {
+      execSync(`curl -fLsS --retry 3 --retry-delay 2 -o "${destFilePath}" "${url}"`, {
+        stdio: 'inherit',
+      })
+      if (fs.existsSync(destFilePath) && fs.statSync(destFilePath).size > 1000) {
+        return
+      }
+    } catch (err) {
+      console.warn(`[sync-ldraw] curl download failed: ${err.message}. Trying fetch...`)
+    }
+  }
+
+  console.log(`[sync-ldraw] Fetching via Node.js native fetch: ${url}...`)
+  const response = await fetch(url)
+  if (!response.ok) {
+    throw new Error(`HTTP ${response.status} ${response.statusText} for ${url}`)
+  }
+  const fileStream = fs.createWriteStream(destFilePath)
+  await pipeline(Readable.fromWeb(response.body), fileStream)
+  console.log(`[sync-ldraw] Download completed (${fs.statSync(destFilePath).size} bytes).`)
+}
+
+function extractArchive(zipPath, targetDir) {
+  console.log(`[sync-ldraw] Decompressing archive into ${targetDir}...`)
+  fs.mkdirSync(targetDir, { recursive: true })
+
+  const hasUnzip = spawnSync('unzip', ['-v'], { stdio: 'ignore' }).status === 0
+  if (hasUnzip) {
+    execSync(`unzip -q "${zipPath}" -d "${targetDir}"`, { stdio: 'inherit' })
+    return
+  }
+
+  const hasTar = spawnSync('tar', ['--version'], { stdio: 'ignore' }).status === 0
+  if (hasTar) {
+    execSync(`tar -xf "${zipPath}" -C "${targetDir}"`, { stdio: 'inherit' })
+    return
+  }
+
+  throw new Error('Neither unzip nor tar utility found to decompress LDraw archive')
+}
+
+function locateLdrawSource(extractDir) {
+  const directCandidates = [
+    path.join(extractDir, 'ldraw'),
+    path.join(extractDir, 'complete', 'ldraw'),
+    extractDir,
+  ]
+  for (const cand of directCandidates) {
+    if (fs.existsSync(path.join(cand, 'parts')) && fs.existsSync(path.join(cand, 'p'))) {
+      return cand
+    }
+  }
+
+  function search(dir, depth = 0) {
+    if (depth > 3) return null
+    if (fs.existsSync(path.join(dir, 'parts')) && fs.existsSync(path.join(dir, 'p'))) {
+      return dir
+    }
+    const entries = fs.readdirSync(dir, { withFileTypes: true })
+    for (const entry of entries) {
+      if (entry.isDirectory()) {
+        const found = search(path.join(dir, entry.name), depth + 1)
+        if (found) return found
+      }
+    }
+    return null
+  }
+
+  const found = search(extractDir)
+  if (found) return found
+  throw new Error(`Failed to locate LDraw parts/ and p/ directories inside extracted archive at ${extractDir}`)
+}
+
+async function syncRemote(destDir, curatedOnly) {
+  console.log(`[sync-ldraw] Downloading official LDraw base library into ${destDir} (curatedOnly=${Boolean(curatedOnly)})...`)
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'brick-catalog-sync-'))
+  const zipPath = path.join(tmpDir, 'complete.zip')
+  const extractDir = path.join(tmpDir, 'extracted')
+
+  try {
+    try {
+      await downloadFile(LDRAW_SYNC_URL, zipPath)
+    } catch (primaryErr) {
+      console.warn(`[sync-ldraw] Primary sync failed (${primaryErr.message}). Trying fallback upstream...`)
+      await downloadFile(LDRAW_FALLBACK_URL, zipPath)
+    }
+
+    extractArchive(zipPath, extractDir)
+    const ldrawSource = locateLdrawSource(extractDir)
+    console.log(`[sync-ldraw] Found valid LDraw structure at ${ldrawSource}`)
+
+    await syncFromLocal(ldrawSource, destDir, curatedOnly)
+    console.log('[sync-ldraw] Remote sync completed successfully.')
+  } finally {
+    try {
+      fs.rmSync(tmpDir, { recursive: true, force: true })
+    } catch (cleanErr) {
+      console.warn(`[sync-ldraw] Failed to remove temporary directory ${tmpDir}: ${cleanErr.message}`)
+    }
+  }
 }
 
 async function main() {
@@ -204,7 +316,7 @@ async function main() {
     if (options.fromLocal) {
       await syncFromLocal(options.fromLocal, options.dest, options.curatedOnly)
     } else {
-      await syncRemote(options.dest)
+      await syncRemote(options.dest, options.curatedOnly)
     }
     console.log('[sync-ldraw] Sync completed successfully.')
   } catch (err) {

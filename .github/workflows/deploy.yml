@@ -32,7 +32,7 @@ jobs:
 
       - name: Sync LDraw & Build Catalog
         run: |
-          node scripts/sync-ldraw.mjs
+          node scripts/sync-ldraw.mjs --curated-only || echo "[sync-ldraw] Warning: remote sync failed, proceeding with pre-built artifacts"
           npm run build
           npm test
 

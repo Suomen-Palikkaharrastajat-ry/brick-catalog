@@ -23,6 +23,7 @@ const REPO_ROOT = path.resolve(__dirname, '..')
 function detectSourceDir() {
   const candidates = [
     path.join(REPO_ROOT, 'raw'),
+    path.resolve(REPO_ROOT, '../brick-frame/viewer-app/public/ldraw'),
     path.resolve(REPO_ROOT, '../viewer-app/public/ldraw'),
     '/workspace/brick-frame/viewer-app/public/ldraw',
   ]
@@ -34,20 +35,94 @@ function detectSourceDir() {
   return null
 }
 
+function hasPrebuiltArtifacts() {
+  const manifestPath = path.join(REPO_ROOT, 'manifests', 'library-manifest.json')
+  const curatedPath = path.join(REPO_ROOT, 'indices', 'parts-curated.json')
+  const bundlesDir = path.join(REPO_ROOT, 'bundles')
+
+  return (
+    fs.existsSync(manifestPath) &&
+    fs.existsSync(curatedPath) &&
+    fs.existsSync(bundlesDir) &&
+    fs.readdirSync(bundlesDir).some((f) => f.endsWith('.mpd'))
+  )
+}
+
+function deployPrebuiltArtifacts(distDir) {
+  console.log('[build-all] Notice: No raw LDraw source found, but pre-built manifests, indices, and bundles exist in repository.')
+  console.log('[build-all] Deploying pre-built catalog artifacts directly to dist/...\n')
+
+  // 1. Deploy Manifests
+  console.log('[1/5] Deploying Pre-Built Manifests...')
+  const distManifests = path.join(distDir, 'manifests')
+  fs.mkdirSync(distManifests, { recursive: true })
+  fs.cpSync(path.join(REPO_ROOT, 'manifests'), distManifests, { recursive: true })
+  console.log('[build-all] Copied manifests/ to dist/manifests/')
+
+  // 2. Deploy Indices
+  console.log('\n[2/5] Deploying Pre-Built Indices...')
+  const distIndices = path.join(distDir, 'indices')
+  fs.mkdirSync(distIndices, { recursive: true })
+  fs.cpSync(path.join(REPO_ROOT, 'indices'), distIndices, { recursive: true })
+  console.log('[build-all] Copied indices/ to dist/indices/')
+
+  // 3. Deploy Bundles
+  console.log('\n[3/5] Deploying Pre-Built MPD Bundles...')
+  const distBundles = path.join(distDir, 'bundles')
+  fs.mkdirSync(distBundles, { recursive: true })
+  fs.cpSync(path.join(REPO_ROOT, 'bundles'), distBundles, { recursive: true })
+  console.log('[build-all] Copied bundles/ to dist/bundles/')
+
+  // 4. Copy Dashboard & Assets
+  console.log('\n[4/5] Packaging Dashboard & Static Assets...')
+  const indexPath = path.join(REPO_ROOT, 'index.html')
+  if (fs.existsSync(indexPath)) {
+    fs.copyFileSync(indexPath, path.join(distDir, 'index.html'))
+    console.log('[build-all] Copied index.html to dist/')
+  }
+
+  const cnamePath = path.join(REPO_ROOT, 'CNAME')
+  if (fs.existsSync(cnamePath)) {
+    fs.copyFileSync(cnamePath, path.join(distDir, 'CNAME'))
+    console.log('[build-all] Copied CNAME to dist/')
+  }
+
+  // 5. Raw Fallback Assets (LDConfig.ldr)
+  console.log('\n[5/5] Deploying Raw Fallback Configs...')
+  const localLdConfig = path.join(REPO_ROOT, 'raw', 'LDConfig.ldr')
+  if (fs.existsSync(localLdConfig)) {
+    const distRaw = path.join(distDir, 'raw')
+    fs.mkdirSync(distRaw, { recursive: true })
+    fs.copyFileSync(localLdConfig, path.join(distRaw, 'LDConfig.ldr'))
+    console.log('[build-all] Copied LDConfig.ldr to dist/raw/')
+  }
+
+  console.log('\n========================================================')
+  console.log('       BUILD COMPLETED SUCCESSFULLY (PRE-BUILT ARTIFACTS)')
+  console.log('========================================================')
+  console.log(`Artifacts deployed in: ${distDir}`)
+}
+
 async function main() {
   console.log('========================================================')
-  console.log('       BRICK PLAY CATALOG — MASTER BUILD PIPELINE        ')
+  console.log('          BRICK CATALOG — MASTER BUILD PIPELINE         ')
   console.log('========================================================')
-
-  const sourceDir = detectSourceDir()
-  if (!sourceDir) {
-    console.error('[build-all] Error: No LDraw library found. Run "npm run sync" first.')
-    process.exit(1)
-  }
-  console.log(`[build-all] Using LDraw source: ${sourceDir}`)
 
   const distDir = path.join(REPO_ROOT, 'dist')
   fs.mkdirSync(distDir, { recursive: true })
+
+  const sourceDir = detectSourceDir()
+  if (!sourceDir) {
+    if (hasPrebuiltArtifacts()) {
+      deployPrebuiltArtifacts(distDir)
+      return
+    }
+
+    console.error('[build-all] Error: No LDraw library found and no pre-built artifacts available in repository.')
+    console.error('[build-all] Run "node scripts/sync-ldraw.mjs" to download the library first.')
+    process.exit(1)
+  }
+  console.log(`[build-all] Using LDraw source: ${sourceDir}`)
 
   // 1. Build Manifests
   console.log('\n[1/5] Building Library Manifest & Version Metadata...')

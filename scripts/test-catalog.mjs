@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * scripts/test-catalog.mjs
- * Comprehensive automated test suite for brick-play-catalog:
+ * Comprehensive automated test suite for brick-catalog:
  *  1. Manifest integrity
  *  2. MPD closure (100% self-contained, 0 missing subfiles)
  *  3. Curated index size (<25 KB) & Elm schema validation
@@ -78,7 +78,7 @@ function extractSubfiles(content) {
 
 async function runTests() {
   console.log('========================================================')
-  console.log('        BRICK PLAY CATALOG — VALIDATION SUITE           ')
+  console.log('            BRICK CATALOG — VALIDATION SUITE            ')
   console.log('========================================================\n')
 
   const targetDir = fs.existsSync(path.join(REPO_ROOT, 'dist'))

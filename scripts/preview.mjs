@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * scripts/preview.mjs
- * Lightweight local preview server for brick-play-catalog.
+ * Lightweight local preview server for brick-catalog.
  * Serves dist/ directory with CORS and proper content types.
  */
 

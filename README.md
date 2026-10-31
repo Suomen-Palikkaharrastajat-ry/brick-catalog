@@ -1,4 +1,4 @@
-# Palikkakehys LDraw Parts Catalog & CDN (`brick-play-catalog`)
+# Palikkakehys LDraw Parts Catalog & CDN (`brick-catalog`)
 
 Standalone, CDN-optimized LDraw catalog and MPD bundle repository published at **[https://catalog.palikkaharrastajat.fi/](https://catalog.palikkaharrastajat.fi/)**, designed for **Brick Frame** applications (Viewer, Studio, Brick Play).
 
@@ -12,7 +12,7 @@ In traditional LDraw web applications, resolving a single LEGO part requires dis
 ```
 On mobile cellular networks (40–120ms RTT), this 4–5 tier waterfall takes 500ms–1500ms of serialized round-trips for a single brick. Furthermore, 94.6% of parts start with a digit, which previously triggered false-positive 404 trial requests against primitive directories.
 
-`brick-play-catalog` provides:
+`brick-catalog` provides:
 1. **1-Request Part Loading via Pre-Bundled MPDs:** Pre-compiles the entire transitive dependency graph into self-contained Multi-Part Documents (`bundles/<part>.mpd`). One single HTTP GET loads the part and 100% of its subparts and primitives.
 2. **Deterministic Zero-404 Routing:** `manifests/library-manifest.json` provides an exact O(1) file-to-path lookup table, eliminating guesswork and false 404s.
 3. **Lightweight Curated Index (< 25 KB):** `indices/parts-curated.json` contains essential curated building parts in an Elm-compatible schema (`{ version: 1, parts: [...] }`) with minimal payload, avoiding the 200–500ms main-thread JSON decoding freeze on mobile Safari.
@@ -24,7 +24,7 @@ On mobile cellular networks (40–120ms RTT), this 4–5 tier waterfall takes 50
 ## 2. Directory Layout & CDN Endpoints
 
 ```text
-brick-play-catalog/
+brick-catalog/
 ├── CNAME                            # Custom domain: catalog.palikkaharrastajat.fi
 ├── index.html                       # Modern health status dashboard & MPD explorer
 ├── package.json                     # Pure Node.js ESM toolchain
