@@ -1272,5 +1272,47 @@
     "category": "Technic",
     "description": "technic turntable 28 tooth top",
     "keywords": "technic, 99010"
+  },
+  {
+    "file": "2711.dat",
+    "name": "Technic Rotor 2 Blade with 2 Studs",
+    "category": "Technic",
+    "description": "technic rotor 2 blade with 2 studs",
+    "keywords": "technic, rotor, propeller, blade, 2711"
+  },
+  {
+    "file": "32125.dat",
+    "name": "Technic Rotor 3 Blade with 6 Studs",
+    "category": "Technic",
+    "description": "technic rotor 3 blade with 6 studs",
+    "keywords": "technic, rotor, propeller, blade, 32125"
+  },
+  {
+    "file": "3958.dat",
+    "name": "Plate 6 x 6",
+    "category": "Plate",
+    "description": "plate 6 x 6",
+    "keywords": "plate, 6x6, 3958"
+  },
+  {
+    "file": "6541.dat",
+    "name": "Technic Brick 1 x 1 with Hole",
+    "category": "Technic",
+    "description": "technic brick 1 x 1 with hole",
+    "keywords": "technic, brick, hole, 6541"
+  },
+  {
+    "file": "41539.dat",
+    "name": "Plate 8 x 8",
+    "category": "Plate",
+    "description": "plate 8 x 8",
+    "keywords": "plate, 8x8, 41539"
+  },
+  {
+    "file": "89678.dat",
+    "name": "Technic Pin 1/2 with Friction",
+    "category": "Technic",
+    "description": "technic pin 1/2 with friction",
+    "keywords": "technic, pin, friction, 89678"
   }
 ]
