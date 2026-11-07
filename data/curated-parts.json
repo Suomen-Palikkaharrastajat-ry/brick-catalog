@@ -196,6 +196,13 @@
     "keywords": "slope, 33, roof"
   },
   {
+    "file": "54200.dat",
+    "name": "Slope 31 1 x 1 x 2/3",
+    "category": "Slope",
+    "description": "31° slope (cheese slope), 1 x 1 x 2/3",
+    "keywords": "slope, 31, cheese, roof"
+  },
+  {
     "file": "3070.dat",
     "name": "Tile 1 x 1",
     "category": "Tile",
