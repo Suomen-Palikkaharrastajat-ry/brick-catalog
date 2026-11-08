@@ -1323,15 +1323,8 @@
     "keywords": "technic, pin, friction, 89678"
   },
   {
-    "file": "3794b.dat",
-    "name": "Plate 1 x 2 with 1 Stud",
-    "category": "Plate",
-    "description": "plate 1 x 2 with groove and 1 centre stud",
-    "keywords": "plate, jumper, offset, spacer, 3794b, 3794"
-  },
-  {
     "file": "15573.dat",
-    "name": "Plate 1 x 2 with 1 Stud without Understud",
+    "name": "Plate 1 x 2 with 1 Stud",
     "category": "Plate",
     "description": "plate 1 x 2 with groove and 1 centre stud without understud",
     "keywords": "plate, jumper, offset, spacer, 15573, 3794"
