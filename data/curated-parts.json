@@ -1363,5 +1363,19 @@
     "category": "Tile",
     "description": "tile 1 x 1 heart shape",
     "keywords": "tile, dots, heart, 39739"
+  },
+  {
+    "file": "2412b.dat",
+    "name": "Tile 1 x 2 Grille with Groove",
+    "category": "Tile",
+    "description": "tile 1 x 2 grille with groove",
+    "keywords": "tile, grille, radiator, grill, 2412, 2412b"
+  },
+  {
+    "file": "2412.dat",
+    "name": "Tile 1 x 2 Grille",
+    "category": "Tile",
+    "description": "tile 1 x 2 grille",
+    "keywords": "tile, grille, radiator, grill, 2412"
   }
 ]
