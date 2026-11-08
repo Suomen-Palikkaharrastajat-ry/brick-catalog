@@ -1321,5 +1321,47 @@
     "category": "Technic",
     "description": "technic pin 1/2 with friction",
     "keywords": "technic, pin, friction, 89678"
+  },
+  {
+    "file": "3794b.dat",
+    "name": "Plate 1 x 2 with 1 Stud",
+    "category": "Plate",
+    "description": "plate 1 x 2 with groove and 1 centre stud",
+    "keywords": "plate, jumper, offset, spacer, 3794b, 3794"
+  },
+  {
+    "file": "15573.dat",
+    "name": "Plate 1 x 2 with 1 Stud without Understud",
+    "category": "Plate",
+    "description": "plate 1 x 2 with groove and 1 centre stud without understud",
+    "keywords": "plate, jumper, offset, spacer, 15573, 3794"
+  },
+  {
+    "file": "87580.dat",
+    "name": "Plate 2 x 2 with 1 Center Stud",
+    "category": "Plate",
+    "description": "plate 2 x 2 with groove and 1 centre stud",
+    "keywords": "plate, jumper, offset, spacer, 87580"
+  },
+  {
+    "file": "25269.dat",
+    "name": "Tile 1 x 1 Round Quarter",
+    "category": "Tile",
+    "description": "tile 1 x 1 round quarter",
+    "keywords": "tile, dots, quarter round, 25269"
+  },
+  {
+    "file": "24246.dat",
+    "name": "Tile 1 x 1 with Rounded End",
+    "category": "Tile",
+    "description": "tile 1 x 1 with rounded end",
+    "keywords": "tile, dots, half round, 24246"
+  },
+  {
+    "file": "39739.dat",
+    "name": "Tile 1 x 1 Heart Shape",
+    "category": "Tile",
+    "description": "tile 1 x 1 heart shape",
+    "keywords": "tile, dots, heart, 39739"
   }
 ]
