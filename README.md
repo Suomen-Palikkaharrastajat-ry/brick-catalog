@@ -131,6 +131,11 @@ npm run sync -- --curated-only
 # ...or from an unpacked LDraw library on disk
 npm run sync -- --curated-only --from-local /path/to/ldraw
 
+# --dest <dir> syncs elsewhere. Each sync replaces <dest>/parts and <dest>/p;
+# a --dest with parts/ or p/ but no .ldraw-source marker from an earlier sync
+# is refused unless --force-clear is given (raw/ itself is always cleared)
+npm run sync -- --curated-only --dest /tmp/ldraw-curated
+
 # Complete master build (manifests, indices, bundles, dashboard, CNAME -> dist/)
 # dist/ is emptied first; the build fails if raw/ has not been synced
 npm run build

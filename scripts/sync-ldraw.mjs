@@ -4,7 +4,7 @@
  * Syncs LDraw parts library from local directory or remote upstream.
  *
  * Usage:
- *   node scripts/sync-ldraw.mjs [--from-local <dir>] [--dest <dir>] [--curated-only]
+ *   node scripts/sync-ldraw.mjs [--from-local <dir>] [--dest <dir>] [--curated-only] [--force-clear]
  *
  * Writes <dest>/.ldraw-source (JSON provenance: source URL/path, commit, date,
  * syncedAt), which build-manifest.mjs uses for version.json `ldrawRelease`.
@@ -42,6 +42,7 @@ function parseArgs() {
     fromLocal: null,
     dest: path.join(REPO_ROOT, 'raw'),
     curatedOnly: false,
+    forceClear: false,
   }
 
   for (let i = 0; i < args.length; i++) {
@@ -62,12 +63,17 @@ function parseArgs() {
       i++
     } else if (args[i] === '--curated-only') {
       options.curatedOnly = true
+    } else if (args[i] === '--force-clear') {
+      options.forceClear = true
     } else if (args[i] === '--help' || args[i] === '-h') {
       console.log(`Usage: node scripts/sync-ldraw.mjs [options]
 Options:
   --from-local <dir>  Path to local LDraw directory (e.g. ../viewer-app/public/ldraw)
   --dest <dir>        Target sync directory (default: ./raw)
   --curated-only      Sync only curated parts and their dependencies
+  --force-clear       Clear <dest>/parts and <dest>/p even when <dest> has no
+                      .ldraw-source marker from an earlier sync (by default
+                      such a --dest is refused; ./raw is always cleared)
   --help, -h          Show this help message`)
       process.exit(0)
     }
@@ -171,20 +177,45 @@ function isSameOrInside(child, parent) {
   return rel === '' || (!rel.startsWith('..') && !path.isAbsolute(rel))
 }
 
+function realOrResolved(p) {
+  return fs.existsSync(p) ? fs.realpathSync(p) : path.resolve(p)
+}
+
+/**
+ * Refuses to clear a --dest that holds parts/ or p/ not written by this
+ * script: clearing is allowed when <dest>/.ldraw-source exists (an earlier
+ * sync), when <dest> is the repository's own raw/, when it has neither parts/
+ * nor p/ yet, or with --force-clear.
+ */
+function assertDestClearable(destDir, forceClear) {
+  if (forceClear) return
+  const dest = realOrResolved(destDir)
+  if (dest === realOrResolved(path.join(REPO_ROOT, 'raw'))) return
+  if (fs.existsSync(path.join(dest, '.ldraw-source'))) return
+  const existing = ['parts', 'p'].filter((d) => fs.existsSync(path.join(dest, d)))
+  if (existing.length === 0) return
+  throw new Error(
+    `Refusing to clear ${existing.map((d) => path.join(destDir, d)).join(' and ')}: ` +
+      `${destDir} has no .ldraw-source marker from an earlier sync. ` +
+      'Pass --force-clear to replace it anyway.',
+  )
+}
+
 /**
  * Removes <dest>/parts and <dest>/p so files from an earlier sync (parts that
  * left the curated list, old primitives) do not leak into dist/. Called only
  * once the source has been located and the closure computed, so a failed
  * download never wipes a working raw/. Skipped when the source is the
- * destination or lies inside it.
+ * destination or lies inside it; otherwise guarded by assertDestClearable.
  */
-function clearStaleDest(sourceDir, destDir) {
+function clearStaleDest(sourceDir, destDir, forceClear) {
   const src = fs.realpathSync(sourceDir)
-  const dest = fs.existsSync(destDir) ? fs.realpathSync(destDir) : path.resolve(destDir)
+  const dest = realOrResolved(destDir)
   if (isSameOrInside(src, dest) || isSameOrInside(dest, src)) {
     console.warn(`[sync-ldraw] Not clearing ${destDir}: it overlaps the source ${sourceDir}`)
     return
   }
+  assertDestClearable(destDir, forceClear)
   for (const d of ['parts', 'p']) {
     const target = path.join(dest, d)
     if (fs.existsSync(target)) {
@@ -194,7 +225,7 @@ function clearStaleDest(sourceDir, destDir) {
   }
 }
 
-async function syncFromLocal(sourceDir, destDir, curatedOnly) {
+async function syncFromLocal(sourceDir, destDir, curatedOnly, forceClear = false) {
   console.log(`[sync-ldraw] Syncing from local directory: ${sourceDir}`)
   console.log(`[sync-ldraw] Destination: ${destDir}`)
 
@@ -207,7 +238,7 @@ async function syncFromLocal(sourceDir, destDir, curatedOnly) {
   if (curatedOnly) {
     console.log('[sync-ldraw] Calculating curated dependency closure...')
     const closure = getCuratedClosure(sourceDir)
-    clearStaleDest(sourceDir, destDir)
+    clearStaleDest(sourceDir, destDir, forceClear)
     console.log(`[sync-ldraw] Copying ${closure.size} closure files...`)
 
     let copied = 0
@@ -228,7 +259,7 @@ async function syncFromLocal(sourceDir, destDir, curatedOnly) {
       }
     }
   } else {
-    clearStaleDest(sourceDir, destDir)
+    clearStaleDest(sourceDir, destDir, forceClear)
     console.log('[sync-ldraw] Copying LDraw structure (parts, p, LDConfig.ldr)...')
     const dirsToCopy = ['parts', 'p']
     for (const d of dirsToCopy) {
@@ -367,7 +398,7 @@ function writeSourceInfo(destDir, info) {
   console.log(`[sync-ldraw] Wrote provenance ${path.join(destDir, '.ldraw-source')} (commit: ${data.commit || 'unknown'}, date: ${data.date || 'unknown'})`)
 }
 
-async function syncRemote(destDir, curatedOnly) {
+async function syncRemote(destDir, curatedOnly, forceClear = false) {
   console.log(`[sync-ldraw] Downloading official LDraw base library into ${destDir} (curatedOnly=${Boolean(curatedOnly)})...`)
   const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'brick-catalog-sync-'))
   const zipPath = path.join(tmpDir, 'complete.zip')
@@ -389,7 +420,7 @@ async function syncRemote(destDir, curatedOnly) {
     const ldrawSource = locateLdrawSource(extractDir)
     console.log(`[sync-ldraw] Found valid LDraw structure at ${ldrawSource}`)
 
-    await syncFromLocal(ldrawSource, destDir, curatedOnly)
+    await syncFromLocal(ldrawSource, destDir, curatedOnly, forceClear)
     writeSourceInfo(destDir, { source: sourceUrl, commit, date })
     console.log('[sync-ldraw] Remote sync completed successfully.')
   } finally {
@@ -406,10 +437,12 @@ async function main() {
 
   try {
     if (options.fromLocal) {
-      await syncFromLocal(options.fromLocal, options.dest, options.curatedOnly)
+      await syncFromLocal(options.fromLocal, options.dest, options.curatedOnly, options.forceClear)
       writeSourceInfo(options.dest, { source: options.fromLocal })
     } else {
-      await syncRemote(options.dest, options.curatedOnly)
+      // Check before downloading; the remote source never overlaps --dest.
+      assertDestClearable(options.dest, options.forceClear)
+      await syncRemote(options.dest, options.curatedOnly, options.forceClear)
     }
     console.log('[sync-ldraw] Sync completed successfully.')
   } catch (err) {
