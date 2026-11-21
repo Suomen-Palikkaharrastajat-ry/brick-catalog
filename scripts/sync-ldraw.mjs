@@ -398,27 +398,59 @@ function writeSourceInfo(destDir, info) {
   console.log(`[sync-ldraw] Wrote provenance ${path.join(destDir, '.ldraw-source')} (commit: ${data.commit || 'unknown'}, date: ${data.date || 'unknown'})`)
 }
 
+/**
+ * Downloads and extracts one archive into fresh paths under tmpDir and
+ * returns the LDraw tree inside it. Throws when the download fails, the
+ * archive cannot be extracted (unzip also exits non-zero on mere warnings,
+ * which counts as unusable) or it holds no parts/ and p/; the attempt's
+ * files are removed then, so a later attempt never sees a partial tree.
+ */
+async function fetchLdrawArchive(url, tmpDir, attempt) {
+  const zipPath = path.join(tmpDir, `archive-${attempt}.zip`)
+  const extractDir = path.join(tmpDir, `extracted-${attempt}`)
+  try {
+    await downloadFile(url, zipPath)
+    extractArchive(zipPath, extractDir)
+    const ldrawSource = locateLdrawSource(extractDir)
+    return { zipPath, ldrawSource }
+  } catch (err) {
+    fs.rmSync(zipPath, { force: true })
+    fs.rmSync(extractDir, { recursive: true, force: true })
+    throw err
+  }
+}
+
 async function syncRemote(destDir, curatedOnly, forceClear = false) {
   console.log(`[sync-ldraw] Downloading official LDraw base library into ${destDir} (curatedOnly=${Boolean(curatedOnly)})...`)
   const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'brick-catalog-sync-'))
-  const zipPath = path.join(tmpDir, 'complete.zip')
-  const extractDir = path.join(tmpDir, 'extracted')
 
   try {
-    let sourceUrl = LDRAW_SYNC_URL
-    try {
-      await downloadFile(LDRAW_SYNC_URL, zipPath)
-    } catch (primaryErr) {
-      console.warn(`[sync-ldraw] Primary sync failed (${primaryErr.message}). Trying fallback upstream...`)
-      sourceUrl = LDRAW_FALLBACK_URL
-      await downloadFile(LDRAW_FALLBACK_URL, zipPath)
+    // The mirror is used when the primary archive cannot be downloaded,
+    // extracted, or does not contain an LDraw tree.
+    const urls = [LDRAW_SYNC_URL, LDRAW_FALLBACK_URL]
+    const failures = []
+    let archive = null
+    let sourceUrl = null
+    for (const [attempt, url] of urls.entries()) {
+      try {
+        archive = await fetchLdrawArchive(url, tmpDir, attempt)
+        sourceUrl = url
+        break
+      } catch (err) {
+        failures.push(`${url}: ${err.message}`)
+        if (attempt < urls.length - 1) {
+          console.warn(`[sync-ldraw] Primary archive unusable (${err.message}). Trying fallback upstream...`)
+        }
+      }
     }
+    if (!archive) {
+      throw new Error(`No usable LDraw archive. ${failures.join('; ')}`)
+    }
+    const { zipPath, ldrawSource } = archive
+    console.log(`[sync-ldraw] Found valid LDraw structure at ${ldrawSource}`)
+
     const commit = readZipComment(zipPath)
     const date = await githubCommitDate(sourceUrl, commit)
-
-    extractArchive(zipPath, extractDir)
-    const ldrawSource = locateLdrawSource(extractDir)
-    console.log(`[sync-ldraw] Found valid LDraw structure at ${ldrawSource}`)
 
     await syncFromLocal(ldrawSource, destDir, curatedOnly, forceClear)
     writeSourceInfo(destDir, { source: sourceUrl, commit, date })

@@ -125,7 +125,8 @@ In Elm (`LDraw.Resolve`):
 
 ```bash
 # Sync the curated parts' closure from the current LDraw library into raw/
-# (downloads library.ldraw.org complete.zip, falling back to the kulits mirror)
+# (downloads library.ldraw.org complete.zip, falling back to the kulits mirror
+# when that download fails or is not a usable LDraw archive)
 npm run sync -- --curated-only
 
 # ...or from an unpacked LDraw library on disk
