@@ -10,7 +10,8 @@
  * syncedAt), which build-manifest.mjs uses for version.json `ldrawRelease`.
  * Provenance can be given with LDRAW_SOURCE_URL, LDRAW_SOURCE_COMMIT and
  * LDRAW_SOURCE_DATE; for a GitHub codeload zip the commit is read from the zip
- * comment.
+ * comment. An archive without a commit (library.ldraw.org complete.zip) gets
+ * the download's Last-Modified header as its date.
  */
 
 import fs from 'node:fs'
@@ -283,20 +284,43 @@ async function syncFromLocal(sourceDir, destDir, curatedOnly, forceClear = false
   }
 }
 
+/** Parses an HTTP date into an ISO string; null when missing or invalid. */
+function httpDateToIso(value) {
+  if (!value) return null
+  const ms = Date.parse(value)
+  return Number.isNaN(ms) ? null : new Date(ms).toISOString()
+}
+
+/**
+ * Last-Modified from a `curl -D` header dump. With -L (and --retry) the file
+ * holds one header block per response; only the last one describes the body.
+ */
+function lastModifiedFromHeaderDump(text) {
+  const blocks = text.split(/\r?\n\r?\n/).filter((b) => b.trim())
+  const last = blocks[blocks.length - 1] || ''
+  return httpDateToIso(/^last-modified:[ \t]*(.+?)[ \t]*$/im.exec(last)?.[1])
+}
+
+/** Downloads url to destFilePath; returns { lastModified } (ISO or null). */
 async function downloadFile(url, destFilePath) {
   console.log(`[sync-ldraw] Downloading archive from: ${url}`)
 
   const hasCurl = spawnSync('curl', ['--version'], { stdio: 'ignore' }).status === 0
   if (hasCurl) {
+    const headerPath = `${destFilePath}.headers`
     try {
-      execSync(`curl -fLsS --retry 3 --retry-delay 2 -o "${destFilePath}" "${url}"`, {
-        stdio: 'inherit',
-      })
+      execSync(
+        `curl -fLsS --retry 3 --retry-delay 2 -D "${headerPath}" -o "${destFilePath}" "${url}"`,
+        { stdio: 'inherit' },
+      )
       if (fs.existsSync(destFilePath) && fs.statSync(destFilePath).size > 1000) {
-        return
+        const headers = fs.existsSync(headerPath) ? fs.readFileSync(headerPath, 'utf8') : ''
+        return { lastModified: lastModifiedFromHeaderDump(headers) }
       }
     } catch (err) {
       console.warn(`[sync-ldraw] curl download failed: ${err.message}. Trying fetch...`)
+    } finally {
+      fs.rmSync(headerPath, { force: true })
     }
   }
 
@@ -308,6 +332,7 @@ async function downloadFile(url, destFilePath) {
   const fileStream = fs.createWriteStream(destFilePath)
   await pipeline(Readable.fromWeb(response.body), fileStream)
   console.log(`[sync-ldraw] Download completed (${fs.statSync(destFilePath).size} bytes).`)
+  return { lastModified: httpDateToIso(response.headers.get('last-modified')) }
 }
 
 function extractArchive(zipPath, targetDir) {
@@ -409,10 +434,10 @@ async function fetchLdrawArchive(url, tmpDir, attempt) {
   const zipPath = path.join(tmpDir, `archive-${attempt}.zip`)
   const extractDir = path.join(tmpDir, `extracted-${attempt}`)
   try {
-    await downloadFile(url, zipPath)
+    const { lastModified } = await downloadFile(url, zipPath)
     extractArchive(zipPath, extractDir)
     const ldrawSource = locateLdrawSource(extractDir)
-    return { zipPath, ldrawSource }
+    return { zipPath, ldrawSource, lastModified }
   } catch (err) {
     fs.rmSync(zipPath, { force: true })
     fs.rmSync(extractDir, { recursive: true, force: true })
@@ -446,11 +471,14 @@ async function syncRemote(destDir, curatedOnly, forceClear = false) {
     if (!archive) {
       throw new Error(`No usable LDraw archive. ${failures.join('; ')}`)
     }
-    const { zipPath, ldrawSource } = archive
+    const { zipPath, ldrawSource, lastModified } = archive
     console.log(`[sync-ldraw] Found valid LDraw structure at ${ldrawSource}`)
 
     const commit = readZipComment(zipPath)
-    const date = await githubCommitDate(sourceUrl, commit)
+    // A mirror commit is dated by GitHub; an archive without a commit
+    // (library.ldraw.org complete.zip) by its Last-Modified header, which is
+    // when the server generated the file, not necessarily a release date.
+    const date = commit ? await githubCommitDate(sourceUrl, commit) : lastModified
 
     await syncFromLocal(ldrawSource, destDir, curatedOnly, forceClear)
     writeSourceInfo(destDir, { source: sourceUrl, commit, date })

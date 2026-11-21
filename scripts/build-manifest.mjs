@@ -75,10 +75,21 @@ function scanDirectoryFiles(dir, baseDir) {
   return results
 }
 
+function sourceHost(source) {
+  try {
+    const url = new URL(source)
+    return url.protocol === 'http:' || url.protocol === 'https:' ? url.hostname : null
+  } catch {
+    return null // a --from-local path
+  }
+}
+
 /**
  * LDraw library release label for version.json:
  * LDRAW_RELEASE env, else the provenance written by sync-ldraw.mjs
- * (<source>/.ldraw-source: commit date and short sha), else "current".
+ * (<source>/.ldraw-source): "YYYY-MM-DD (owner/repo@sha7)" for a mirror
+ * commit, "YYYY-MM-DD (host)" for a dated download without a commit (e.g.
+ * library.ldraw.org complete.zip, dated by Last-Modified), else "current".
  */
 export function resolveLdrawRelease(sourceDir) {
   if (process.env.LDRAW_RELEASE) return process.env.LDRAW_RELEASE
@@ -86,7 +97,9 @@ export function resolveLdrawRelease(sourceDir) {
     const info = JSON.parse(fs.readFileSync(path.join(sourceDir, '.ldraw-source'), 'utf8'))
     const date = typeof info.date === 'string' ? info.date.slice(0, 10) : null
     const repo = /github\.com\/([^/]+\/[^/]+)\//.exec(info.source || '')?.[1]
-    const ref = info.commit ? `${repo || 'commit'}@${String(info.commit).slice(0, 7)}` : null
+    const ref = info.commit
+      ? `${repo || 'commit'}@${String(info.commit).slice(0, 7)}`
+      : date && sourceHost(info.source)
     if (date && ref) return `${date} (${ref})`
     if (date || ref) return date || ref
   } catch {
