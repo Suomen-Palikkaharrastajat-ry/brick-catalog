@@ -46,14 +46,15 @@ Hidden entries without `movedTo` are legacy parts kept for old models (e.g. `379
 ## Verification Commands
 
 ```bash
-# Run complete catalog test suite (about 60 fixed checks plus one per MPD bundle)
-npm test
-
 # Sync the curated closure from the current LDraw library into raw/
 npm run sync -- --curated-only
 
 # Rebuild catalog and dist/ directory
 npm run build
+
+# Run the catalog test suite against dist/ (a fixed set of structural checks
+# plus one per MPD bundle)
+npm test
 
 # Preview dashboard locally
 npm run preview

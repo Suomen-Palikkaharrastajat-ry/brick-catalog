@@ -3,9 +3,9 @@
  * scripts/test-catalog.mjs
  * Comprehensive automated test suite for brick-catalog:
  *  1. Manifest integrity
- *  2. MPD closure (100% self-contained, 0 missing subfiles)
- *  3. Curated index size (<25 KB) & Elm schema validation
- *  4. Category index partitions, MPD closure
+ *  2. Curated index size (<25 KB) & Elm schema validation
+ *  3. Category index partitions
+ *  4. MPD closure (100% self-contained, 0 missing subfiles; one check per bundle)
  *  4b. Legacy & moved parts (hidden curated entries stay live, out of indices)
  *  5. Dashboard validity and markup integrity
  */
