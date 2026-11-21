@@ -2074,6 +2074,27 @@
     "keywords": "plant, leaves, foliage, 4x3, 2423"
   },
   {
+    "file": "2417.dat",
+    "name": "Plant Leaves 6 x 5",
+    "category": "Plant",
+    "description": "plant leaves 6 x 5",
+    "keywords": "plant, leaves, foliage, 6x5, 2417"
+  },
+  {
+    "file": "3470.dat",
+    "name": "Tree Pine Small",
+    "category": "Plant",
+    "description": "tree pine small",
+    "keywords": "tree, pine, small, plant, 3470"
+  },
+  {
+    "file": "3471.dat",
+    "name": "Tree Pine Large",
+    "category": "Plant",
+    "description": "tree pine large",
+    "keywords": "tree, pine, large, plant, 3471"
+  },
+  {
     "file": "2877.dat",
     "name": "Brick 1 x 2 with Grille",
     "category": "Brick",
