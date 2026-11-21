@@ -74,7 +74,8 @@ Options:
   --curated-only      Sync only curated parts and their dependencies
   --force-clear       Clear <dest>/parts and <dest>/p even when <dest> has no
                       .ldraw-source marker from an earlier sync (by default
-                      such a --dest is refused; ./raw is always cleared)
+                      such a --dest is refused; a real, non-symlink ./raw
+                      directory is always cleared)
   --help, -h          Show this help message`)
       process.exit(0)
     }
@@ -185,13 +186,17 @@ function realOrResolved(p) {
 /**
  * Refuses to clear a --dest that holds parts/ or p/ not written by this
  * script: clearing is allowed when <dest>/.ldraw-source exists (an earlier
- * sync), when <dest> is the repository's own raw/, when it has neither parts/
- * nor p/ yet, or with --force-clear.
+ * sync), when <dest> is the repository's own raw/ (a real, non-symlink
+ * directory), when it has neither parts/ nor p/ yet, or with --force-clear.
  */
 function assertDestClearable(destDir, forceClear) {
   if (forceClear) return
   const dest = realOrResolved(destDir)
-  if (dest === realOrResolved(path.join(REPO_ROOT, 'raw'))) return
+  // The raw/ exemption holds only for a real directory: a symlinked raw/ (or a
+  // missing one, as in CI) gets no free pass. Compare realpaths so --dest ./raw
+  // and --dest raw/../raw stay exempt.
+  const rawDir = path.join(REPO_ROOT, 'raw')
+  if (fs.lstatSync(rawDir, { throwIfNoEntry: false })?.isDirectory() && dest === fs.realpathSync(rawDir)) return
   if (fs.existsSync(path.join(dest, '.ldraw-source'))) return
   const existing = ['parts', 'p'].filter((d) => fs.existsSync(path.join(dest, d)))
   if (existing.length === 0) return

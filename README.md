@@ -134,7 +134,9 @@ npm run sync -- --curated-only --from-local /path/to/ldraw
 
 # --dest <dir> syncs elsewhere. Each sync replaces <dest>/parts and <dest>/p;
 # a --dest with parts/ or p/ but no .ldraw-source marker from an earlier sync
-# is refused unless --force-clear is given (raw/ itself is always cleared)
+# is refused unless --force-clear is given (a real, non-symlink raw/ directory is
+# always cleared). A --dest that overlaps the source (--from-local inside or equal
+# to --dest, or the reverse) is never cleared: a warning is printed and the sync continues
 npm run sync -- --curated-only --dest /tmp/ldraw-curated
 
 # Complete master build (manifests, indices, bundles, dashboard, CNAME -> dist/)
