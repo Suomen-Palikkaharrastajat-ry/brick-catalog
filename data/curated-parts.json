@@ -632,7 +632,8 @@
     "name": "Duplo Brick 2 x 4",
     "category": "Brick",
     "description": "duplo brick 2 x 4",
-    "keywords": "brick, 3011"
+    "keywords": "brick, 3011",
+    "hidden": true
   },
   {
     "file": "3023bp00.dat",
@@ -1337,7 +1338,8 @@
     "name": "Brick 6 x 6 Corner Round with Slope 33 Chamfer (Needs Work)",
     "category": "Brick",
     "description": "brick 6 x 6 corner round with slope 33 chamfer (needs work)",
-    "keywords": "brick, 95188"
+    "keywords": "brick, 95188",
+    "hidden": true
   },
   {
     "file": "98138.dat",
@@ -1738,7 +1740,8 @@
     "name": "Glass for Window 1 x 2 x 2 without Sill",
     "category": "Glass",
     "description": "glass for window 1 x 2 x 2 without sill",
-    "keywords": "glass, window, transparent, 1x2x2, 60601"
+    "keywords": "glass, window, transparent, 1x2x2, 60601",
+    "hidden": true
   },
   {
     "file": "87552.dat",
@@ -1913,7 +1916,8 @@
     "name": "Glass for Window 1 x 2 x 3",
     "category": "Glass",
     "description": "glass for window 1 x 2 x 3",
-    "keywords": "glass, window, transparent, 1x2x3, 60602"
+    "keywords": "glass, window, transparent, 1x2x3, 60602",
+    "hidden": true
   },
   {
     "file": "4865b.dat",
