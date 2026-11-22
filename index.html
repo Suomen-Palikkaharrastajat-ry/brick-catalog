@@ -303,7 +303,9 @@
         <button class="pill" data-cat="slope">Slopes</button>
         <button class="pill" data-cat="tile">Tiles</button>
         <button class="pill" data-cat="bracket">Brackets & SNOT</button>
+        <button class="pill" data-cat="micro">Microscale</button>
         <button class="pill" data-cat="technic">Technic</button>
+        <button class="pill" data-cat="vehicle">Vehicles</button>
       </div>
 
       <div class="parts-grid" id="parts-grid">
@@ -460,11 +462,13 @@ VITE_LDRAW_MANIFEST_URL="https://catalog.palikkaharrastajat.fi/manifests/library
         // Category filter
         if (currentCategory !== 'all') {
           if (currentCategory === 'bracket' && !cat.includes('bracket') && !keywords.includes('bracket') && !keywords.includes('snot')) return false
-          if (currentCategory === 'technic' && !cat.includes('technic') && !keywords.includes('technic') && !keywords.includes('gear')) return false
+          if (currentCategory === 'technic' && !cat.includes('technic') && !keywords.includes('technic') && !keywords.includes('gear') && !keywords.includes('axle')) return false
           if (currentCategory === 'brick' && !cat.includes('brick')) return false
-          if (currentCategory === 'plate' && !cat.includes('plate')) return false
+          if (currentCategory === 'plate' && !cat.includes('plate') && !cat.includes('baseplate')) return false
           if (currentCategory === 'slope' && !cat.includes('slope')) return false
           if (currentCategory === 'tile' && !cat.includes('tile')) return false
+          if (currentCategory === 'micro' && !cat.includes('micro') && !cat.includes('cone') && !cat.includes('antenna') && !cat.includes('bar') && !cat.includes('fence') && !cat.includes('dish') && !cat.includes('arch') && !cat.includes('panel') && !cat.includes('plant') && !keywords.includes('micro') && !keywords.includes('cannon')) return false
+          if (currentCategory === 'vehicle' && !cat.includes('vehicle') && !cat.includes('car') && !cat.includes('wheel') && !cat.includes('tyre') && !cat.includes('windscreen') && !cat.includes('boat') && !cat.includes('train') && !cat.includes('turntable') && !keywords.includes('wheel') && !keywords.includes('tyre')) return false
         }
 
         // Query filter
