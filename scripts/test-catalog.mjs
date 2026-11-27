@@ -302,6 +302,16 @@ async function runTests() {
     }
     assert(badStubs.length === 0, 'Every "~Moved to" stub in raw/parts is a hidden curated entry with the matching movedTo', badStubs.join(', '))
 
+    const aliasFile = path.join(targetDir, 'raw', 'parts', '92338.dat')
+    const aliasRef = fs.existsSync(aliasFile)
+      ? fs.readFileSync(aliasFile, 'utf8').split(/\r?\n/).find((l) => l.trim().startsWith('1 '))
+      : ''
+    assert(
+      aliasRef.trim().endsWith('92338-f1.dat'),
+      'The base-number alias raw/parts/92338.dat points at 92338-f1.dat',
+      aliasRef || 'file missing'
+    )
+
     const brokenChains = []
     for (const p of curatedList.filter((e) => e.movedTo)) {
       const seen = new Set([p.file])

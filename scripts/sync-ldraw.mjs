@@ -231,6 +231,22 @@ function clearStaleDest(sourceDir, destDir, forceClear) {
   }
 }
 
+/**
+ * Part files this repo ships itself (`data/local-parts/`), for numbers the
+ * LDraw library does not have, such as the base number of a flexible part.
+ * They are copied into `<dest>/parts` after every sync.
+ */
+const LOCAL_PARTS_DIR = path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'data', 'local-parts')
+
+function copyLocalParts(destDir) {
+  if (!fs.existsSync(LOCAL_PARTS_DIR)) return
+  const partsDir = path.join(destDir, 'parts')
+  fs.mkdirSync(partsDir, { recursive: true })
+  for (const name of fs.readdirSync(LOCAL_PARTS_DIR)) {
+    fs.copyFileSync(path.join(LOCAL_PARTS_DIR, name), path.join(partsDir, name))
+  }
+}
+
 async function syncFromLocal(sourceDir, destDir, curatedOnly, forceClear = false) {
   console.log(`[sync-ldraw] Syncing from local directory: ${sourceDir}`)
   console.log(`[sync-ldraw] Destination: ${destDir}`)
@@ -255,6 +271,7 @@ async function syncFromLocal(sourceDir, destDir, curatedOnly, forceClear = false
       copied++
     }
     console.log(`[sync-ldraw] Successfully copied ${copied} curated files.`)
+    copyLocalParts(destDir)
 
     for (const f of LICENCE_FILES) {
       const src = path.join(sourceDir, f)
@@ -284,6 +301,8 @@ async function syncFromLocal(sourceDir, destDir, curatedOnly, forceClear = false
         fs.copyFileSync(src, path.join(destDir, f))
       }
     }
+
+    copyLocalParts(destDir)
 
     console.log('[sync-ldraw] Complete local copy finished.')
   }
