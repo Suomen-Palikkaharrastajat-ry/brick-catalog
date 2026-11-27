@@ -2157,5 +2157,47 @@
     "description": "legacy jumper plate, kept live for existing models",
     "keywords": "plate, jumper, 1x2, 3794b",
     "hidden": true
+  },
+  {
+    "file": "4790.dat",
+    "name": "Ship's Wheel",
+    "category": "Boat",
+    "description": "ship's wheel",
+    "keywords": "wheel, ship, helm, steering, boat"
+  },
+  {
+    "file": "48729.dat",
+    "name": "Bar Holder with Clip",
+    "category": "Bar",
+    "description": "bar holder with clip",
+    "keywords": "bar, holder, clip, yard, rigging, ship"
+  },
+  {
+    "file": "64644.dat",
+    "name": "Telescope",
+    "category": "Boat",
+    "description": "telescope",
+    "keywords": "telescope, spyglass, ship, cannon"
+  },
+  {
+    "file": "41769.dat",
+    "name": "Wedge Plate",
+    "category": "Plate",
+    "description": "wedge plate",
+    "keywords": "wedge, plate, pointed, bow, hull"
+  },
+  {
+    "file": "41770.dat",
+    "name": "Wedge Plate",
+    "category": "Plate",
+    "description": "wedge plate",
+    "keywords": "wedge, plate, pointed, bow, hull"
+  },
+  {
+    "file": "13547.dat",
+    "name": "Slope Curved Inverted 4 x 1",
+    "category": "Slope",
+    "description": "curved inverted slope 4 x 1",
+    "keywords": "slope, curved, inverted, hull, bow"
   }
 ]
