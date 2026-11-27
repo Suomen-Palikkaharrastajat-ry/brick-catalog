@@ -977,7 +977,21 @@
     "name": "Technic Chain Link",
     "category": "Technic",
     "description": "technic chain link",
-    "keywords": "Rebrickable 3711a"
+    "keywords": "chain, link, anchor, technic, 3711, Rebrickable 3711a"
+  },
+  {
+    "file": "92338-f1.dat",
+    "name": "Chain 5 Links (Straight)",
+    "category": "Chain",
+    "description": "minifig chain 6L with 6L span straight",
+    "keywords": "chain, 5 links, anchor, 92338, BrickLink 92338, Rebrickable 92338"
+  },
+  {
+    "file": "92338-f2.dat",
+    "name": "Chain 5 Links (Catenary)",
+    "category": "Chain",
+    "description": "minifig chain 6L with 6L span catenary",
+    "keywords": "chain, 5 links, anchor, sagging, 92338, BrickLink 92338, Rebrickable 92338"
   },
   {
     "file": "3713.dat",
